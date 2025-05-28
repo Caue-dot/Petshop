@@ -20,13 +20,16 @@ session_start();
 
 if(!isset($_SESSION['last_regeneration'])){
     //Cria o cookie caso não exista
-    session_regenerate_id(true);
-    $_SESSION['last_regeneration'] = time();
+    regenerate_session_id();
 }else{
     $interval = 60 * 30;
     //Caso o cookie expire, Regenera e reseta o timer;
     if(time() - $_SESSION['last_regeneration']  >= $interval){
-        session_regenerate_id(true);
-        $_SESSION['last_regeneration'] = time();
+        regenerate_session_id();
     }
+}
+
+function regenerate_session_id(){
+    session_regenerate_id();
+    $_SESSION["last_regeneration"] = time();
 }

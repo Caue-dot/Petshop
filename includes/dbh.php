@@ -1,7 +1,9 @@
 <?php
 
 //Informações do banco de dados
-$dsn = "mysql:host=localhost; dbname:petshop";
+
+$host = 'localhost';
+$dbname = 'petshop';
 $dbusername = "root";
 $dbpassword = "";
 
@@ -9,7 +11,7 @@ $dbpassword = "";
 
 try{
     
-    $pdo = new PDO($dsn, $dbusername, $dbpassword);
+    $pdo = new PDO("mysql:host=$host; dbname=$dbname", $dbusername, $dbpassword);
     //Configurar o pdo para acusar o erro
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }catch(PDOException $e){
