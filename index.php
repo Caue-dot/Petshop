@@ -22,15 +22,9 @@
     </form>
     <h2> Sign Up</h2>
     <form action="includes/signup.inc.php" method="POST">
-        <label for="username">Usuário</label>
-        <input type="text" name="username">
-        <br>
-        <label for="username">Senha</label>
-        <input type="text" name="pwd">
-        <br>
-        <label for="email">Email</label> 
-        <input type="text" name="email">
-        <br>
+        <?php
+        signup_inputs();
+        ?>
         <input type="submit" value= "Cadastrar">
     </form>
 

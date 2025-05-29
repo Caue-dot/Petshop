@@ -33,8 +33,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         require_once 'config_session.inc.php';
         if($errors){
-            echo "Error";
             $_SESSION["errors_signup"] = $errors;
+
+            $signupData = [
+                "username" => $username,
+                "email" => $email
+            ];
+            $_SESSION["signup_data"] = $signupData;
+
             header("Location: ../index.php");
             die();
         }
