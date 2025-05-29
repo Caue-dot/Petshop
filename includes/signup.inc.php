@@ -13,7 +13,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         require_once 'signup_model.inc.php';
         require_once 'signup_contr.inc.php';
 
-
+        // Checa se há erros nos inputs
         $errors = [];
         if(is_input_empty($username, $pwd, $email)){
             $errors["empty_input"] = "Preencha todos os campos!";
@@ -33,8 +33,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         require_once 'config_session.inc.php';
         if($errors){
+            //Caso haja erros cria um cookie com os erros
             $_SESSION["errors_signup"] = $errors;
-
+            
+            //Cria um cookie para salvar os campos preenchidos
             $signupData = [
                 "username" => $username,
                 "email" => $email
@@ -45,6 +47,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             die();
         }
 
+        //Cria o usuario
         create_user($pdo, $pwd, $username, $email);
         header("Location: ../index.php?signup=success");
         $pdo = null;

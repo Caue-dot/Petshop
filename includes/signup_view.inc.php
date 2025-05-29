@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 
 function signup_inputs(){
-   
+    //Cria os inputs, e caso ja tenha salvo algum input do cookie "signup_data" e não tenha erros preenche automaticamente.
 
     if(isset($_SESSION["signup_data"]["username"]) && !isset($_SESSION["errors_signup"]["username_taken"])){
         echo '<input type="text" name=username placeholder="Usuario" value="' . $_SESSION["signup_data"] ["username"] . '">';
@@ -33,6 +33,7 @@ function signup_inputs(){
 
 function check_signup_errors(){
     if(isset($_SESSION["errors_signup"])){
+        //Caso tenha erro, mostra pro usuário
         $errors = $_SESSION["errors_signup"];
 
         echo "<br>";
@@ -43,8 +44,9 @@ function check_signup_errors(){
 
         unset($_SESSION["errors_signup"]);
     }else if(isset($_GET["signup"] ) && $_GET["signup"] === "success"){
+        //Caso tenha sido cadastrado com sucesso mostre pro usuario 
         echo "<br>";
-        echo "<p>Sign up success! </p>";
+        echo "<p>Cadastrado com sucesso! </p>";
 
     }
 }
