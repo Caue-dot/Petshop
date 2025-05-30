@@ -30,7 +30,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         if(is_email_registered($pdo, $email)){
             $errors["email_used"] = "Email já cadastrado";
         }
-
         require_once 'config_session.inc.php';
         if($errors){
             //Caso haja erros cria um cookie com os erros
