@@ -1,6 +1,7 @@
 <?php
 require_once "includes/config_session.inc.php";
 require_once "includes/signup_view.inc.php";
+require_once "includes/login_view.inc.php";
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +32,7 @@ require_once "includes/signup_view.inc.php";
 
 <!--Seção de login-->
     <h2> Login </h2>
-    <form action="includes/login.inc.php">
+    <form action="includes/login.inc.php" method="POST">
         <label for="username">Usuário</label>
         <input type="text" name="username">
         <br>
@@ -40,6 +41,10 @@ require_once "includes/signup_view.inc.php";
         <br>
         <input type="submit" value="Login">
     </form>
+
+    <?php
+    check_login_errors();
+    ?>
     <h2> Sign Up</h2>
     <form action="includes/signup.inc.php" method="POST">
         <?php
@@ -53,6 +58,12 @@ require_once "includes/signup_view.inc.php";
     check_signup_errors();
     ?>
     
+    <br>
+
+    <form action="includes/logout.inc.php">
+        <input type="submit" value="Logout">
+    </form>
+
     <main>
         <section class="hero">
             <h2>Seu Pet, Nossa Paixão!</h2>
