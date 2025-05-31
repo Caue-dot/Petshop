@@ -10,7 +10,6 @@ function check_upload_errors(){
 
         foreach ($errors as $error) {
             echo $error . "<br>";
-            break;
         }
         unset($_SESSION["errors_upload"]);
     }

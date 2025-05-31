@@ -4,6 +4,7 @@ require_once 'prod_admin_model.inc.php';
 require_once 'prod_admin_controller.inc.php';
 
 require_once 'includes/config_session.inc.php';
+
 if (!isset($_SESSION["products"])) {
 
 

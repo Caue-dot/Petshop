@@ -6,12 +6,14 @@ define ('SITE_ROOT', realpath(dirname(__FILE__)));
 
 
 function upload_image(array $file){
+
+ 
     $errors = [];
     $target_dir = "img_uploads/";
     $target_file = $target_dir . basename($file["name"]);
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-
+    
     if(empty($file["tmp_name"])){
         $errors["file_empty"] = "Por favor, insira um arquivo";
     }
@@ -23,7 +25,8 @@ function upload_image(array $file){
         }
     }
 
-    if(file_exists($target_file)){
+    
+    if(file_exists(SITE_ROOT . "/" .$target_file)){
         $errors["already_exists"] = "Já existe um arquivo de mesmo nome!";
     }
 
@@ -33,7 +36,7 @@ function upload_image(array $file){
     }
 
     if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" ){
-        $errors["extension_not_supported"] = "Desculpe, apenas JPG, JPEG e PNG são permitidos";
+        $errors["extension_not_supported"] = $target_file;
     }
 
     require_once 'includes/config_session.inc.php';
@@ -51,4 +54,12 @@ function upload_image(array $file){
         return false;
     }
 
+}
+
+function delete_image(string $file){
+    if(file_exists($file)){
+        unlink($file);
+    }else{
+        return "Essa imagem não existe";
+    }
 }
