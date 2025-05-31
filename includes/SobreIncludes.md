@@ -1,1 +1,0 @@
-A pasta Includes serve para colocar os arquivos .php que não conter uma pagina html, somente o php puro.

@@ -1,7 +1,7 @@
 <?php
 require_once "includes/config_session.inc.php";
-require_once "includes/signup_view.inc.php";
-require_once "includes/login_view.inc.php";
+require_once "includes/user_auth.inc/signup.inc/signup_view.inc.php";
+require_once "includes/user_auth.inc/login.inc/login_view.inc.php";
 
 
 ?>
@@ -18,6 +18,9 @@ require_once "includes/login_view.inc.php";
 
 <body>
     <header class="main-header">
+            <?php
+               check_login();
+            ?>
         <div class="container">
             <img src="public/img/logodopetshop.jpg" class="logo"><a href="index.html"></a>
             <nav class="main-nav">
@@ -34,7 +37,7 @@ require_once "includes/login_view.inc.php";
 
 <!--Seção de login-->
     <h2> Login </h2>
-    <form action="includes/login.inc.php" method="POST">
+    <form action="includes/user_auth.inc/login.inc/login.inc.php" method="POST">
         <label for="username">Usuário</label>
         <input type="text" name="username">
         <br>
@@ -48,7 +51,7 @@ require_once "includes/login_view.inc.php";
     check_login_errors();
     ?>
     <h2> Sign Up</h2>
-    <form action="includes/signup.inc.php" method="POST">
+    <form action="includes/user_auth.inc/signup.inc/signup.inc.php" method="POST">
         <?php
         signup_inputs();
         ?>
@@ -62,7 +65,7 @@ require_once "includes/login_view.inc.php";
     
     <br>
 
-    <form action="includes/logout.inc.php">
+    <form action="includes/user_auth.inc/logout.inc.php">
         <input type="submit" value="Logout">
     </form>
 

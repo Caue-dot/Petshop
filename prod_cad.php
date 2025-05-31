@@ -1,6 +1,6 @@
 <?php
     require "includes/config_session.inc.php";
-    require "includes/prod_cad_view.inc.php";
+    require "includes/products.inc/prod_cad.inc/prod_cad_view.inc.php";
 
     if(!isset($_SESSION["user_id"]) || $_SESSION["user_username"] != "admin"){
         header("Location: index.php");
@@ -18,7 +18,7 @@
 <body>
     <h1>Cadastro de produto </h1>
 
-    <form id="cad" action="includes/prod_cad.inc.php" method="post" enctype="multipart/form-data"> 
+    <form id="cad" action="includes/products.inc/prod_cad.inc/prod_cad.inc.php" method="post" enctype="multipart/form-data"> 
         <h3>Nome: </h3>
         <input type="text" name="name">
         <br>

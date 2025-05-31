@@ -36,7 +36,7 @@ function upload_image(array $file){
         $errors["extension_not_supported"] = "Desculpe, apenas JPG, JPEG e PNG são permitidos";
     }
 
-    require_once '../includes/config_session.inc.php';
+    require_once 'includes/config_session.inc.php';
     if($errors){
         $_SESSION["errors_upload"] = $errors;
         header("Location: /prod_cad.php");

@@ -9,7 +9,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
     try{
-        require_once 'dbh.inc.php';
+        require_once '../../dbh.inc.php';
         require_once 'signup_model.inc.php';
         require_once 'signup_contr.inc.php';
 
@@ -30,7 +30,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         if(is_email_registered($pdo, $email)){
             $errors["email_used"] = "Email já cadastrado";
         }
-        require_once 'config_session.inc.php';
+        require_once '../../config_session.inc.php';
         if($errors){
             //Caso haja erros cria um cookie com os erros
             $_SESSION["errors_signup"] = $errors;
@@ -42,13 +42,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             ];
             $_SESSION["signup_data"] = $signupData;
 
-            header("Location: ../index.php");
+            header("Location: ../../../index.php");
             die();
         }
 
         //Cria o usuario
         create_user($pdo, $pwd, $username, $email);
-        header("Location: ../index.php?signup=success");
+        header("Location: ../../../index.php?signup=success");
         $pdo = null;
         $stmt = null;
 
@@ -59,5 +59,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 }else{
-    header("Location: ../index.php");
+    header("Location: ../../../index.php");
 }

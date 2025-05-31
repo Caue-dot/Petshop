@@ -9,7 +9,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
     try{
-        require_once 'dbh.inc.php';
+        require_once '../../dbh.inc.php';
         require_once 'login_model.inc.php';
         require_once 'login_contr.inc.php';
 
@@ -31,12 +31,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
 
 
-        require_once 'config_session.inc.php';
+        require_once '../../config_session.inc.php';
         if($errors){
             //Caso haja erros cria um cookie com os erros
             $_SESSION["errors_login"] = $errors;
          
-            header("Location: ../index.php");
+            header("Location: ../../../index.php");
             die();
         }
 
@@ -48,7 +48,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $_SESSION["user_username"] = $result["username"];
 
         $_SESSION["last_regeneration"] = time();
-        header("Location: ../index.php?login=success");
+         header("Location: ../../../index.php?login=success");
 
         $pdo = null;
         $stmt = null;
@@ -62,5 +62,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 }else{
-    header("Location: ../index.php");
+    header("Location: ../../../index.php");
 }

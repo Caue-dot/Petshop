@@ -10,7 +10,8 @@ function get_product($pdo, $name){
 
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     return $result;
-}
+}   
+
 
 function set_product($pdo, $name,$user_id, $description, $price, $image){
     $query = "INSERT INTO products(user_id, name, description, image, price) VALUES (:user_id, :name, :description, :image, :price)";
