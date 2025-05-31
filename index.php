@@ -45,6 +45,7 @@ require_once "includes/user_auth.inc/login.inc/login_view.inc.php";
         <input type="text" name="pwd">
         <br>
         <input type="submit" value="Login">
+        
     </form>
 
     <?php
