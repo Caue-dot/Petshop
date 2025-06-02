@@ -9,6 +9,12 @@ $view = new ProductView();
 if (!isset($_SESSION["user_id"]) || $_SESSION["user_username"] != "admin") {
     header("Location: index.php");
 }
+
+//Caso ja não tenha pego os produtos e ja não tenha sido retornado um erro, tenta conseguir a lista de todos os produtos
+if (!isset($_SESSION["products"]) && !isset($_GET["error"])) {
+    header("Location: includes/prod_list.inc.php");
+}
+
 ?>
 
 

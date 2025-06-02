@@ -1,7 +1,8 @@
 <?php
 
 
-if (!isset($_SESSION["products"])) {
+
+if (!isset($_SESSION["products"]) ) {
 
     include '../classes/Dbh.inc.php';
     include '../classes/Config_session.class.php';
