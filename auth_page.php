@@ -47,11 +47,7 @@ $view =  new UserView();
     <?php
     $view->check_errors_login();
     echo "<br>";
-    if(isset($_SESSION["user_username"])){
-        echo $_SESSION["user_username"];
-    }else{
-        echo "not logged in";
-    }
+    $view->login_info();
 
     ?>
 </body>
