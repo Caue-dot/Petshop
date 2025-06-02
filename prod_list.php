@@ -1,7 +1,10 @@
 <?php
 include_once 'classes/Config_session.class.php';
+include_once 'classes/products/ProductView.classes.php';
 $session = new Config_Session();
 $session->init();
+
+$view = new ProductView();
 
 if (!isset($_SESSION["user_id"]) || $_SESSION["user_username"] != "admin") {
     header("Location: index.php");
@@ -23,26 +26,8 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_username"] != "admin") {
 
     <a href="includes/prod_list.inc.php">Botão</a>
     <?php
-    if (isset($_SESSION["products"]) && $_SESSION["products"]) {
-        $products = $_SESSION["products"];
-
-        foreach ($products as $product) {
-            echo $product["name"] . " " . "R$" . $product["price"];
-            echo '<br>';
-            echo '<img src=' . $product["image"] . '>';
-            echo '<br>';
-            echo $product["description"];
-            echo '<br>';
-            echo '<a href="includes/prod_list.inc.php?delete=' . $product["id"] . '" ><button> Deletar Produto </button> </a>';
-            echo '<br> <br> <br>';
-        }
-        unset($_SESSION["products"]);
-    }
-
-    if (isset($_GET["error"]) && $_GET["error"] === "empty") {
-        echo '<br>';
-        echo "Não há nenhum produto";
-    }
+        $view->list_products();
+        $view->is_empty();
     ?>
 
 </body>
