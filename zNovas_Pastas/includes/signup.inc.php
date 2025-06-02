@@ -9,13 +9,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     include '../classes/Dbh.inc.php';
     include '../classes/Config_session.class.php';
-    include '../classes/user_auth/Signup.classes.php';
-    include '../classes/user_auth/Signup_contr.classes.php';
+    include '../classes/user_auth/User.classes.php';
+    include '../classes/user_auth/UserContr.classes.php';
 
     $session = new Config_Session();
     $session->init();
-    $signup = new SignupContr($username, $pwd, $email);
-    $signup->create_user();
+    $user = new UserContr($username, $pwd, $email);
+    $user->create_user();
 } else {
-    header("Location: ../../../index.php");
+    header("Location: ../../index.php");
 }

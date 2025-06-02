@@ -1,13 +1,15 @@
 <?php
 
-class Signup extends Dbh
+class User extends Dbh
 {
 
-    protected function get_username(string $username)
+    
+
+    protected function get_user_by_username(string $username)
     {
         //Pega o usuario com determinado username do banco de dados
 
-        $query = "SELECT username FROM users WHERE username = :username;";
+        $query = "SELECT * FROM users WHERE username = :username;";
         $pdo = parent::connect();
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(":username", $username);
@@ -17,16 +19,16 @@ class Signup extends Dbh
         return $result;
     }
 
-    protected function get_email(string $email)
+    protected function get_user_by_email(string $email)
     {
         //Pega o usuario com determinado email do banco de dados
-        $query = "SELECT email FROM users WHERE email = :email;";
+        $query = "SELECT * FROM users WHERE email = :email;";
         $pdo = parent::connect();
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(":email", $email);
         $stmt->execute();
 
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 
@@ -49,6 +51,6 @@ class Signup extends Dbh
         $stmt->bindParam(":email", $email);
         $stmt->execute();
 
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
 }
