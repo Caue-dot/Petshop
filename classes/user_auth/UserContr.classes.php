@@ -5,7 +5,7 @@ class UserContr extends User
     private $username;
     private $pwd;
     private $email;
-    private $redirect_path = "../index.php";
+    private $redirect_path = "../auth_page.php";
 
     public function __construct($username, $pwd, $email)
     {
