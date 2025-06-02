@@ -8,6 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $price = $_POST["price"];
     $price = (int)$price;
     $img = $_FILES["img"];
+    $quantity = $_POST["quantity"];
     
 
 
@@ -18,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $session = new Config_Session();
     $session->init();
-    $signup = new ProductContr($name,$description,$price,$img);
+    $signup = new ProductContr($name,$description,$price,$img,$quantity);
     $signup->cad_product();
 } else {
     header("Location: ../index.php");

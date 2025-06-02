@@ -1,7 +1,11 @@
 <?php
 include_once 'classes/Config_session.class.php';
+include_once 'classes/user_auth/UserView.classes.php';
 $session = new Config_Session();
 $session->init();
+
+$view =  new UserView();
+
 ?>
 
 <html lang="en">
@@ -26,6 +30,9 @@ $session->init();
         <br>
         <input type="submit" value="Cadastrar">
     </form>
+    <?php
+    $view->check_errors_signup();
+    ?>
     <h3>Login </h3>
     <form action="includes/login.inc.php" method="POST">
         <label for="username">Usuário</label>
@@ -38,6 +45,8 @@ $session->init();
     </form>
 
     <?php
+    $view->check_errors_login();
+    echo "<br>";
     if(isset($_SESSION["user_username"])){
         echo $_SESSION["user_username"];
     }else{

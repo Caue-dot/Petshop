@@ -42,9 +42,9 @@ class Product extends Dbh
         $stmt->bindParam(":id", $id);
         $stmt->execute();
     }
-    protected function set_product($name, $user_id, $description, $price, $image)
+    protected function set_product($name, $user_id, $description, $price, $image, $quantity)
     {
-        $query = "INSERT INTO products(user_id, name, description, image, price) VALUES (:user_id, :name, :description, :image, :price)";
+        $query = "INSERT INTO products(user_id, name, description, image, price, quantity) VALUES (:user_id, :name, :description, :image, :price, :quantity)";
 
         $pdo = parent::connect();
         $stmt = $pdo->prepare($query);
@@ -53,6 +53,7 @@ class Product extends Dbh
         $stmt->bindParam(":description", $description);
         $stmt->bindParam(":image", $image);
         $stmt->bindParam(":price", $price);
+        $stmt->bindParam(":quantity", $quantity);
 
         $stmt->execute();
 

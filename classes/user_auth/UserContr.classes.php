@@ -84,27 +84,27 @@ class UserContr extends User
         // Faz uma chamada no banco de dados para enviar os dados do usuario
 
         if ($this->is_input_empty_register()) {
-            header("Location:" . $this->redirect_path . "?error=empty_input");
+            header("Location:" . $this->redirect_path . "?error_signup=empty_input");
             die();
         }
 
         if ($this->is_email_invalid()) {
-            header("Location:" . $this->redirect_path . "?error=invalid_email");
+            header("Location:" . $this->redirect_path . "?error_signup=invalid_email");
             die();
         }
 
         if ($this->username_to_user()) {
-            header("Location:" . $this->redirect_path   . "?error=username_taken");
+            header("Location:" . $this->redirect_path  . "?error_signup=username_taken");
             die();
         }
         if ($this->is_email_registered()) {
-            header("Location:" . $this->redirect_path . "?error=email_already_registered");
+            header("Location:" . $this->redirect_path . "?error_signup=email_already_registered");
             die();
         }
 
         parent::set_user($this->pwd, $this->username, $this->email);
 
-        header("Location:" . $this->redirect_path);
+        header("Location:" . $this->redirect_path. "?register=success");
         die();
     }
 
@@ -115,19 +115,19 @@ class UserContr extends User
 
 
         if ($this->is_input_empty_login()) {
-            header("Location:" . $this->redirect_path . "?error=empty_input");
+            header("Location:" . $this->redirect_path . "?error_login=empty_input");
             die();
         }
 
         $user = $this->username_to_user();
         if (!$user) {
-            header("Location:" . $this->redirect_path . "?error=information_wrong");
+            header("Location:" . $this->redirect_path . "?error_login=information_wrong");
             die();
         }
 
         $hashed_pwd = $user["pwd"];
         if ($this->is_password_wrong($hashed_pwd)) {
-            header("Location:" . $this->redirect_path . "?error=information_wrong");
+            header("Location:" . $this->redirect_path . "?error_login=information_wrong");
             die();
         }
 

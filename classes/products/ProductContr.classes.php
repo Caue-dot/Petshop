@@ -7,15 +7,17 @@ class ProductContr extends Product
     private $description;
     private $price;
     private $img;
+    private $quantity;
     private $redirect_cad_path = "../prod_cad.php";
     private $redirect_list_path = "../prod_list.php";
 
-    public function __construct($name = null, $description =null, $price=null, $img=null)
+    public function __construct($name = null, $description =null, $price=null, $img=null, $quantity = null)
     {
         $this->name  = $name;
         $this->description = $description;
         $this->price = $price;
         $this->img = $img;
+        $this->quantity = $quantity;
     }
 
 
@@ -68,7 +70,7 @@ class ProductContr extends Product
 
         $upload = new Upload();
         $img_path = $upload->upload_image($this->img, $this->redirect_cad_path);
-        parent::set_product($this->name, $user_id ,$this->description, $this->price, $img_path);
+        parent::set_product($this->name, $user_id ,$this->description, $this->price, $img_path, $this->quantity);
 
         header("Location:".$this->redirect_cad_path."?cad=success");
         die();
