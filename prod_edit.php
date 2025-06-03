@@ -29,13 +29,13 @@
 </head>
 <body>
 
+    <h1>Edição de produto </h1>
     <?php
     
     $view->show_product();
 
     ?>
 
-    <h1>Edição de produto </h1>
 
     <?php
     $view->edit_inputs();

@@ -5,7 +5,8 @@ class UserContr extends User
     private $username;
     private $pwd;
     private $email;
-    private $redirect_path = "../auth_page.php";
+    private $redirect_error_path = "../auth_page.php";
+    private $redirect_path = "../index.php";
 
     public function __construct($username, $pwd, $email)
     {
@@ -86,21 +87,21 @@ class UserContr extends User
 
         //Error handlers
         if ($this->is_input_empty_register()) {
-            header("Location:" . $this->redirect_path . "?error_signup=empty_input");
+            header("Location:" . $this->redirect_error_path . "?error_signup=empty_input");
             die();
         }
 
         if ($this->is_email_invalid()) {
-            header("Location:" . $this->redirect_path . "?error_signup=invalid_email");
+            header("Location:" . $this->redirect_error_path . "?error_signup=invalid_email");
             die();
         }
 
         if ($this->username_to_user()) {
-            header("Location:" . $this->redirect_path  . "?error_signup=username_taken");
+            header("Location:" . $this->redirect_error_path  . "?error_signup=username_taken");
             die();
         }
         if ($this->is_email_registered()) {
-            header("Location:" . $this->redirect_path . "?error_signup=email_already_registered");
+            header("Location:" . $this->redirect_error_path . "?error_signup=email_already_registered");
             die();
         }
 
@@ -119,19 +120,19 @@ class UserContr extends User
 
         //Error handlers
         if ($this->is_input_empty_login()) {
-            header("Location:" . $this->redirect_path . "?error_login=empty_input");
+            header("Location:" . $this->redirect_error_path . "?error_login=empty_input");
             die();
         }
 
         $user = $this->username_to_user();
         if (!$user) {
-            header("Location:" . $this->redirect_path . "?error_login=information_wrong");
+            header("Location:" . $this->redirect_error_path . "?error_login=information_wrong");
             die();
         }
 
         $hashed_pwd = $user["pwd"];
         if ($this->is_password_wrong($hashed_pwd)) {
-            header("Location:" . $this->redirect_path . "?error_login=information_wrong");
+            header("Location:" . $this->redirect_error_path . "?error_login=information_wrong");
             die();
         }
 

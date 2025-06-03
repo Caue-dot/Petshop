@@ -1,8 +1,11 @@
 <?php
   
+include("classes/Config_session.class.php");
+include("classes/user_auth/UserView.classes.php");
+$view = new UserView();
 
-
-  
+$session = new Config_Session();
+$session->init();
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +27,10 @@
                     <li><a href="index.html">Início</a></li>
                     <li><a href="produtos.html">Produtos</a></li>
                     <li><a href="informacao.html">Informacao</a></li>
-                    <li><a href="cadastro.html">Cadastro</a></li>
+                    <?php
+                    $view->login_info();
+                    ?>
+                   
                 </ul>
             </nav>
         </div>

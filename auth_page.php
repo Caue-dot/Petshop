@@ -46,8 +46,6 @@ $view =  new UserView();
 
     <?php
     $view->check_errors_login();
-    echo "<br>";
-    $view->login_info();
 
     ?>
 </body>
