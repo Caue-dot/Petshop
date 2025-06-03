@@ -19,8 +19,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $session = new Config_Session();
     $session->init();
-    $signup = new ProductContr($name,$description,$price,$img,$quantity);
+    $signup = new ProductContr(null, $name,$description,$price,$img,$quantity);
     $signup->cad_product();
 } else {
+    
     header("Location: ../index.php");
 }

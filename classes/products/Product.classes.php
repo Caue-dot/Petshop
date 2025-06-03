@@ -3,9 +3,12 @@
 include_once("../classes/Upload.classes.php");
 class Product extends Dbh
 {
-    protected function get_product_by_name($name)
-    {
-        $query = "SELECT * FROM products WHERE name = :name;";
+
+
+    protected function get_id_by_name($name){
+        if(!isset($name)) return null;
+        
+        $query = "SELECT id FROM products WHERE name = :name;";
         $pdo = parent::connect();
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(":name", $name);
@@ -15,7 +18,7 @@ class Product extends Dbh
         return $result;
     }
 
-    protected function get_product_by_id($id)
+    protected function get_product_model($id)
     {
         $query = "SELECT * FROM products WHERE id = :id;";
         $pdo = parent::connect();
@@ -31,7 +34,7 @@ class Product extends Dbh
 
     protected function delete_product($id)
     {
-        $product = $this->get_product_by_id($id);
+        $product = $this->get_product_model($id);
         $upload = new Upload();
         $upload->delete_image($product["image"]);
 
@@ -70,4 +73,41 @@ class Product extends Dbh
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
+
+    protected function update_product_model($id, $name, $description, $price, $image, $quantity){
+
+        $product = $this->get_product_model($id);
+        $img_path = null;
+        if($image["size"] != 0){
+            $upload = new Upload();
+            $upload->delete_image($product["image"]);
+            $img_path = $upload->upload_image($image, "../prod_list.php");
+
+        }
+
+
+        $query = "UPDATE products 
+        SET 
+        name = COALESCE(:name, name),
+        description = COALESCE(:description, description),
+        price = COALESCE(:price, price),
+        image = COALESCE(:image, image),
+        quantity = COALESCE(:quantity, quantity)
+        WHERE id = :id
+
+        ";
+
+        $pdo = parent::connect();
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(":id", $id);
+        $stmt->bindParam(":name", $name);
+        $stmt->bindParam(":description", $description);
+        $stmt->bindParam(":image", $img_path);
+        $stmt->bindParam(":price", $price);
+        $stmt->bindParam(":quantity", $quantity);
+
+        $stmt->execute();
+    }
 }
+

@@ -1,4 +1,6 @@
 <?php
+
+
 include_once 'classes/Config_session.class.php';
 include_once 'classes/products/ProductView.classes.php';
 $session = new Config_Session();
@@ -6,6 +8,8 @@ $session->init();
 
 $view = new ProductView();
 
+
+//Caso não esteje autenticado como admin retorna pra pagina inicial
 if (!isset($_SESSION["user_id"]) || $_SESSION["user_username"] != "admin") {
     header("Location: index.php");
 }
@@ -29,8 +33,6 @@ if (!isset($_SESSION["products"]) && !isset($_GET["error"])) {
 
 <body>
 
-
-    <a href="includes/prod_list.inc.php">Botão</a>
     <?php
         $view->list_products();
         $view->is_empty();

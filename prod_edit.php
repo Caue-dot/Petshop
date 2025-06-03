@@ -1,0 +1,43 @@
+<?php
+    
+    include_once 'classes/products/ProductView.classes.php';
+    include_once 'classes/Config_session.class.php';
+    $session = new Config_Session();
+    $session->init();
+    
+    $view = new ProductView();
+    // if(!isset($_SESSION["user_id"]) || $_SESSION["user_username"] != "admin"){
+    //     header("Location: index.php");
+    // }
+
+    if(isset($_GET["id"])) {
+        header("location: includes/prod_edit.inc.php?id=". $_GET["id"]);
+    }
+
+    
+?>
+
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <?php
+    
+    $view->show_product();
+
+    ?>
+
+    <h1>Edição de produto </h1>
+
+    <?php
+    $view->edit_inputs();
+    ?>
+    
+</body>
+</html>

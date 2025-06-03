@@ -3,6 +3,7 @@ include_once("../classes/Upload.classes.php");
 include_once("../classes/Config_session.class.php");
 class ProductContr extends Product
 {
+    private $id;
     private $name;
     private $description;
     private $price;
@@ -11,14 +12,20 @@ class ProductContr extends Product
     private $redirect_cad_path = "../prod_cad.php";
     private $redirect_list_path = "../prod_list.php";
 
-    public function __construct($name = null, $description =null, $price=null, $img=null, $quantity = null)
+    public function __construct($id = null, $name = null, $description =null, $price=null, $img=null, $quantity = null)
     {
         $this->name  = $name;
         $this->description = $description;
         $this->price = $price;
         $this->img = $img;
         $this->quantity = $quantity;
+        if($id == null){
+            $this->id = parent::get_id_by_name($this->name);
+        }else{
+            $this->id = $id;
+        }
     }
+
 
 
     //Error Handlers
@@ -35,7 +42,7 @@ class ProductContr extends Product
 
     private function is_product_registered()
     {
-        if (parent::get_product_by_name($this->name)) {
+        if (parent::get_product_model($this->id)) {
             return true;
         } else {
             return false;
@@ -93,8 +100,19 @@ class ProductContr extends Product
        die();
     }
 
+
+    //Edição
+
+    public function get_product(){
+        return parent::get_product_model($this->id);
+    }
+
     public function delete_product($id)
     {
         parent::delete_product($id);
+    }
+
+    public function update_product($id){
+        parent::update_product_model($id, $this->name, $this->description, $this->price, $this->img, $this->quantity);
     }
 }

@@ -1,5 +1,5 @@
 <?php
-
+    
     include_once 'classes/Config_session.class.php';
     $session = new Config_Session();
     $session->init();
