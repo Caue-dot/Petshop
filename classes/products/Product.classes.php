@@ -3,9 +3,12 @@
 include_once("../classes/Upload.classes.php");
 class Product extends Dbh
 {
+//Model
+
 
 
     protected function get_id_by_name($name){
+        //Caso não tenha o nome retorna null
         if(!isset($name)) return null;
         
         $query = "SELECT id FROM products WHERE name = :name;";
@@ -20,6 +23,7 @@ class Product extends Dbh
 
     protected function get_product_model($id)
     {
+        //Pega um produto com determinado id do banco de dados
         $query = "SELECT * FROM products WHERE id = :id;";
         $pdo = parent::connect();
         $stmt = $pdo->prepare($query);
@@ -34,10 +38,15 @@ class Product extends Dbh
 
     protected function delete_product($id)
     {
+        //Deleta um produto com um determinado id do banco de dados
+
+        //Deleta a imagem do produto 
         $product = $this->get_product_model($id);
         $upload = new Upload();
         $upload->delete_image($product["image"]);
 
+
+        //Deleta do banco de dados o produto
         $query = "DELETE FROM products WHERE id = :id;";
 
         $pdo = parent::connect();
@@ -47,6 +56,7 @@ class Product extends Dbh
     }
     protected function set_product($name, $user_id, $description, $price, $image, $quantity)
     {
+        //Insere no banco de dados um produto
         $query = "INSERT INTO products(user_id, name, description, image, price, quantity) VALUES (:user_id, :name, :description, :image, :price, :quantity)";
 
         $pdo = parent::connect();
@@ -63,8 +73,9 @@ class Product extends Dbh
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    protected function get_products()
+    protected function get_all_products()
     {
+        //Pega todos os produtos do banco de dados
         $query = "SELECT * FROM products";
         $pdo = parent::connect();
         $stmt = $pdo->prepare($query);
@@ -76,7 +87,10 @@ class Product extends Dbh
 
 
     protected function update_product_model($id, $name, $description, $price, $image, $quantity){
+        //Modifica um produto no banco de dados
 
+
+        //Deleta a imagem antiga e cria a nova
         $product = $this->get_product_model($id);
         $img_path = null;
         if($image["size"] != 0){

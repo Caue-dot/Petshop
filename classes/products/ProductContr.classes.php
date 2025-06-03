@@ -42,6 +42,7 @@ class ProductContr extends Product
 
     private function is_product_registered()
     {
+        //Checa se o produto já está cadastrado
         if (parent::get_product_model($this->id)) {
             return true;
         } else {
@@ -50,6 +51,7 @@ class ProductContr extends Product
     }
 
     private function is_products_empty($products){
+        //Checa se a table de produtos está vazia
         if(!$products){
             return true;
         }else{
@@ -61,6 +63,7 @@ class ProductContr extends Product
     //Cadastro
 
     public function cad_product(){
+        //Insere as informações do produto no banco de dados
         $user_id = null;
         if(isset($_SESSION["user_id"])){
             $user_id = $_SESSION["user_id"];
@@ -85,8 +88,9 @@ class ProductContr extends Product
     
     //Listagem
     
-    public function get_products(){
-       $products =  parent::get_products();
+    public function get_all_products(){
+        //Pega todos os produtos do banco de dados
+       $products =  parent::get_all_products();
        if($this->is_products_empty($products)){
             header("Location:".$this->redirect_list_path."?error=empty");
             die();
@@ -104,15 +108,18 @@ class ProductContr extends Product
     //Edição
 
     public function get_product(){
+        //Pega um produto especifico do banco de dados
         return parent::get_product_model($this->id);
     }
 
     public function delete_product($id)
     {
+        //Deleta um produto do banco de dados
         parent::delete_product($id);
     }
 
     public function update_product($id){
+        //Atualiza um produto no banco de dados
         parent::update_product_model($id, $this->name, $this->description, $this->price, $this->img, $this->quantity);
     }
 }

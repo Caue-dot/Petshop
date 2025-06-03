@@ -16,6 +16,6 @@ if (!isset($_SESSION["products"]) ) {
         $product_contr->delete_product($id);
     }
 
-    $product_contr->get_products();
+    $product_contr->get_all_products();
 
 }

@@ -4,6 +4,8 @@
     $session = new Config_Session();
     $session->init();
     
+
+    //Caso não tenha uma sessão e o nome de usuario não for admin volta pra pagina inicial
     if(!isset($_SESSION["user_id"]) || $_SESSION["user_username"] != "admin"){
         header("Location: index.php");
     }

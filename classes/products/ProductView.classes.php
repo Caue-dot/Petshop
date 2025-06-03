@@ -4,22 +4,32 @@ class ProductView
 {
     public function list_products()
     {
+
+        //Lista todos os produtos
         if (isset($_SESSION["products"]) && $_SESSION["products"]) {
             $products = $_SESSION["products"];
 
+
             foreach ($products as $product) {
-                echo $product["name"] . " " . "R$" . $product["price"];
+
+                //Higieniza os inputs, para evitar cross-site-injection
+                $name = htmlspecialchars($product["name"]);
+                $description = htmlspecialchars($product["description"]);
+                $price = filter_var($product["price"], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+                $quantity = filter_var($product["quantity"], FILTER_SANITIZE_NUMBER_INT);
+
+                echo $name . " " . "R$" . $price;
                 echo '<br>';
-                echo '<img src=' . $product["image"] . '>';
+                echo '<img src=' . filter_var($product["image"], FILTER_SANITIZE_URL) . '>';
                 echo '<br>';
                 echo $product["description"];
                 echo '<br>';
-                echo 'Estoque: <b> '. $product["quantity"] . '</b>';
+                echo 'Estoque: <b> ' . $quantity . '</b>';
                 echo '<br>';
                 echo '<a href="includes/prod_edit.inc.php?id=' . $product["id"] . '" ><button> Editar Produto </button> </a>';
                 echo '<br>';
                 echo '<a href="includes/prod_list.inc.php?delete=' . $product["id"] . '" ><button> Deletar Produto </button> </a>';
-                
+
                 echo '<br> <br> <br>';
             }
             unset($_SESSION["products"]);
@@ -28,46 +38,53 @@ class ProductView
 
 
     public function show_product()
-    {
+    {   
+        //Mostra um produto especifico
         if (isset($_SESSION["product"]) && $_SESSION["product"]) {
 
+            
+            //Higieniza os inputs, para evitar cross-site-injection
             $product = $_SESSION["product"];
+            $name = htmlspecialchars($product["name"]);
+            $description = htmlspecialchars($product["description"]);
+            $price = filter_var($product["price"], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+            $quantity = filter_var($product["quantity"], FILTER_SANITIZE_NUMBER_INT);
 
-            echo $product["name"] . " " . "R$" . $product["price"];
+            echo $name . " " . "R$" . $price;
             echo '<br>';
-            echo '<img src=' . $product["image"] . '>';
+            echo '<img src=' . filter_var($product["image"], FILTER_SANITIZE_URL) . '>';
             echo '<br>';
-            echo $product["description"];
+            echo $description;
+            echo '<br>';
+            echo 'Estoque: <b> ' . $quantity . '</b>';
             echo '<br> <br> <br>';
         }
     }
     public function is_empty()
     {
-
+        //Checa se não há produtos registrados
         if (isset($_GET["error"]) && $_GET["error"] === "empty") {
             echo '<br>';
             echo "Não há nenhum produto";
         }
     }
 
-    public function edit_inputs(){
-       
+    public function edit_inputs()
+    {
         
-      
-
-      
+        //Higieniza os inputs, para evitar cross-site-injection
         $product = $_SESSION["product"];
-        $name = $product["name"];
-        $description = $product["description"];
-        $price = $product["price"];
-        $quantity = $product["quantity"];
+        $name = htmlspecialchars($product["name"]);
+        $description = htmlspecialchars($product["description"]);
+        $price = filter_var($product["price"], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        $quantity = filter_var($product["quantity"], FILTER_SANITIZE_NUMBER_INT);
 
-        
+
 
 
         echo '<form id="edit" action="includes/prod_edit.inc.php" method="post" enctype="multipart/form-data">';
 
-        
+
         echo "
             <h3>Nome: </h3>
             <input type='text' name='name' value=$name>
@@ -89,7 +106,5 @@ class ProductView
         <input type='submit' value = 'Editar' name='submit'>";
 
         echo '</form> ';
-        
-
     }
 }

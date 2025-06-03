@@ -81,8 +81,10 @@ class UserContr extends User
     //Register
     public function create_user()
     {
-        // Faz uma chamada no banco de dados para enviar os dados do usuario
+       
 
+
+        //Error handlers
         if ($this->is_input_empty_register()) {
             header("Location:" . $this->redirect_path . "?error_signup=empty_input");
             die();
@@ -102,6 +104,8 @@ class UserContr extends User
             die();
         }
 
+
+        // Insere no banco de dados o usuario recem cadastrado
         parent::set_user($this->pwd, $this->username, $this->email);
 
         header("Location:" . $this->redirect_path. "?register=success");
@@ -113,7 +117,7 @@ class UserContr extends User
     public function login_user()
     {
 
-
+        //Error handlers
         if ($this->is_input_empty_login()) {
             header("Location:" . $this->redirect_path . "?error_login=empty_input");
             die();
