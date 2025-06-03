@@ -51,11 +51,11 @@ class UserView
         //Mostra a situação atual da autenticação
         if (isset($_SESSION["user_username"])) {
             echo '<li><a href="user_page.php"> Bem vindo: '.$_SESSION["user_username"] . "</a></li>";
-            echo ' <li><a href="includes/logout.inc.php">Logout</a></li>';
-
+            
             if($_SESSION["user_username"] == "admin"){
                 echo ' <li><a href="admin_panel.php">Painel de administrador</a></li>';
-            }
+            }    
+            echo ' <li><a href="includes/logout.inc.php">Logout</a></li>';
         
         }else {
             echo "<li><a href='auth_page.php'>Cadastro/Login</a></li>";
