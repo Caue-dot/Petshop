@@ -30,7 +30,7 @@
         <textarea form ="cad" name="description"></textarea>
         <br>
         <h3>Preço: </h3>
-        <input type="number" name="price">
+        <input type="number" name="price" step=0.01>
         <br>
         <h3>Quantidade do estoque</h3>
         <input type="number" name="quantity">

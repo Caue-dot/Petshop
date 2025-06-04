@@ -1,6 +1,6 @@
 <?php
   
-include("classes/Config_session.class.php");
+include_once("classes/Config_session.class.php");
 include("classes/user_auth/UserView.classes.php");
 $view = new UserView();
 
