@@ -2,6 +2,41 @@
 
 class ProductView
 {
+    public function list_products_admin()
+    {
+
+        //Lista todos os produtos
+        if (isset($_SESSION["products"]) && $_SESSION["products"]) {
+            $products = $_SESSION["products"];
+
+
+            foreach ($products as $product) {
+
+                //Higieniza os inputs, para evitar cross-site-injection
+                $name = htmlspecialchars($product["name"]);
+                $description = htmlspecialchars($product["description"]);
+                $price = filter_var($product["price"], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+                $quantity = filter_var($product["quantity"], FILTER_SANITIZE_NUMBER_INT);
+
+                echo $name . " " . "R$" . $price;
+                echo '<br>';
+                echo '<img width=300 src=' . filter_var($product["image"], FILTER_SANITIZE_URL) . '>';
+                echo '<br>';
+                echo $product["description"];
+                echo '<br>';
+                echo 'Estoque: <b> ' . $quantity . '</b>';
+                echo '<br>';
+                echo '<a href="includes/prod_edit.inc.php?id=' . $product["id"] . '" ><button> Editar Produto </button> </a>';
+                echo '<br>';
+                echo '<a href="includes/prod_list_admin.inc.php?delete=' . $product["id"] . '" ><button> Deletar Produto </button> </a>';
+
+                echo '<br> <br> <br>';
+            }
+            unset($_SESSION["products"]);
+        }
+    }
+
+    
     public function list_products()
     {
 
@@ -20,15 +55,11 @@ class ProductView
 
                 echo $name . " " . "R$" . $price;
                 echo '<br>';
-                echo '<img src=' . filter_var($product["image"], FILTER_SANITIZE_URL) . '>';
+                echo '<img width=300 src=' . filter_var($product["image"], FILTER_SANITIZE_URL) . '>';
                 echo '<br>';
                 echo $product["description"];
                 echo '<br>';
                 echo 'Estoque: <b> ' . $quantity . '</b>';
-                echo '<br>';
-                echo '<a href="includes/prod_edit.inc.php?id=' . $product["id"] . '" ><button> Editar Produto </button> </a>';
-                echo '<br>';
-                echo '<a href="includes/prod_list.inc.php?delete=' . $product["id"] . '" ><button> Deletar Produto </button> </a>';
 
                 echo '<br> <br> <br>';
             }
@@ -84,7 +115,7 @@ class ProductView
 
         echo '<form id="edit" action="includes/prod_edit.inc.php" method="post" enctype="multipart/form-data">';
 
-
+        //Preenche os inputs com os valores do produto editado
         echo "
             <h3>Nome: </h3>
             <input type='text' name='name' value=$name>

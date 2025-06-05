@@ -12,16 +12,16 @@ class ProductContr extends Product
     private $redirect_cad_path = "../prod_cad.php";
     private $redirect_list_path = "../prod_list.php";
 
-    public function __construct($id = null, $name = null, $description =null, $price=null, $img=null, $quantity = null)
+    public function __construct($id = null, $name = null, $description = null, $price = null, $img = null, $quantity = null)
     {
         $this->name  = $name;
         $this->description = $description;
         $this->price = $price;
         $this->img = $img;
         $this->quantity = $quantity;
-        if($id == null){
+        if ($id == null) {
             $this->id = parent::get_id_by_name($this->name);
-        }else{
+        } else {
             $this->id = $id;
         }
     }
@@ -50,11 +50,12 @@ class ProductContr extends Product
         }
     }
 
-    private function is_products_empty($products){
+    private function is_products_empty($products)
+    {
         //Checa se a table de produtos está vazia
-        if(!$products){
+        if (!$products) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -62,52 +63,72 @@ class ProductContr extends Product
 
     //Cadastro
 
-    public function cad_product(){
+    public function cad_product()
+    {
         //Insere as informações do produto no banco de dados
         $user_id = null;
-        if(isset($_SESSION["user_id"])){
+        if (isset($_SESSION["user_id"])) {
             $user_id = $_SESSION["user_id"];
         }
-        if($this->is_input_empty()){
-            header("Location:".$this->redirect_cad_path."?error=input_empty");
+        if ($this->is_input_empty()) {
+            header("Location:" . $this->redirect_cad_path . "?error=input_empty");
             die();
         }
 
-        if($this->is_product_registered()){
-            header("Location:".$this->redirect_cad_path."?error=product_already_registered");
+        if ($this->is_product_registered()) {
+            header("Location:" . $this->redirect_cad_path . "?error=product_already_registered");
             die();
         }
 
         $upload = new Upload();
         $img_path = $upload->upload_image($this->img, $this->redirect_cad_path);
-        parent::set_product($this->name, $user_id ,$this->description, $this->price, $img_path, $this->quantity);
+        parent::set_product($this->name, $user_id, $this->description, $this->price, $img_path, $this->quantity);
 
-        header("Location:".$this->redirect_cad_path."?cad=success");
-        die();
-    }  
-    
+        
+        
+    }
+
     //Listagem
-    
-    public function get_all_products(){
+
+    public function get_all_products($redirect_error_path)
+    {
         //Pega todos os produtos do banco de dados
-       $products =  parent::get_all_products();
-       if($this->is_products_empty($products)){
-            header("Location:".$this->redirect_list_path."?error=empty");
+        $products =  parent::get_all_products_model();
+        if ($this->is_products_empty($products)) {
+            header("Location:" . $redirect_error_path . "?error=empty");
             die();
-       }
+        }
 
-       $session = new Config_Session();
-       $session->init();
+        $session = new Config_Session();
+        $session->init();
 
-       $_SESSION["products"] = $products;
-       header("Location:".$this->redirect_list_path."?list=success");
-       die();
+        $_SESSION["products"] = $products;
+       
+       
+    }
+
+    public function search_product($search)
+    {
+
+        if (empty($search)) {
+            return null;
+        }
+
+        $products = parent::search_product($search);
+
+        $session = new Config_Session();
+        $session->init();
+
+        $_SESSION["products"] = $products;
+        header("Location:" . $this->redirect_list_path . "?list=success");
+        die();
     }
 
 
     //Edição
 
-    public function get_product(){
+    public function get_product()
+    {
         //Pega um produto especifico do banco de dados
         return parent::get_product_model($this->id);
     }
@@ -118,7 +139,8 @@ class ProductContr extends Product
         parent::delete_product($id);
     }
 
-    public function update_product($id){
+    public function update_product($id)
+    {
         //Atualiza um produto no banco de dados
         parent::update_product_model($id, $this->name, $this->description, $this->price, $this->img, $this->quantity);
     }

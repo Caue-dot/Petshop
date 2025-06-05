@@ -1,5 +1,7 @@
 <?php
 
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //Verifica se e a requisição é post e coloca os valores do formulario em variáveis
 
@@ -16,6 +18,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $session->init();
     $user = new UserContr($username, $pwd, null);
     $user->login_user();
+    header("Location: ../index.php");
+
 } else {
-    header("Location: ../../index.php");
+    header("Location: ../index.php");
 }
+die();

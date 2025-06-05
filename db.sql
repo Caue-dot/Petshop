@@ -19,3 +19,14 @@ CREATE TABLE products(
     quantity INT(9) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
 );
+
+
+SELECT
+      a.name,
+      GROUP_CONCAT(b.tag)
+FROM products a
+JOIN products_tags b
+USING (id)
+WHERE id = 8;
+
+

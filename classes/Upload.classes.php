@@ -47,7 +47,12 @@ class Upload
        
 
         if (move_uploaded_file($file["tmp_name"],  SITE_ROOT . "/" . $target_file)) {
-            return $target_file;
+
+            //Tira os espaços em branco do arquivo
+            $img_name = str_replace(' ', '', $target_file);
+            rename(SITE_ROOT. "/". $target_file, SITE_ROOT."/".$img_name);
+            
+            return $img_name;
         } else {
             header("Location:".$error_redirect_page."?error=unexpected_error");
             return false;

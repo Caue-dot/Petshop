@@ -109,8 +109,6 @@ class UserContr extends User
         // Insere no banco de dados o usuario recem cadastrado
         parent::set_user($this->pwd, $this->username, $this->email);
 
-        header("Location:" . $this->redirect_path. "?register=success");
-        die();
     }
 
     //Login
@@ -144,9 +142,10 @@ class UserContr extends User
         $_SESSION["user_id"] = $user["id"];
         $_SESSION["user_username"] = $user["username"];
 
+        $_SESSION["user_id"];
         $_SESSION["last_regeneration"] = time();
-        header("Location:" . $this->redirect_path . "?login=success");
-
-        die();
+        
+        
+        
     }
 }

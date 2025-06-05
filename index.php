@@ -1,11 +1,11 @@
 <?php
   
 include_once("classes/Config_session.class.php");
-include("classes/user_auth/UserView.classes.php");
-$view = new UserView();
-
 $session = new Config_Session();
 $session->init();
+
+include("classes/user_auth/UserView.classes.php");
+$view = new UserView();
 ?>
 
 <!DOCTYPE html>

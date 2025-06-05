@@ -73,10 +73,10 @@ class Product extends Dbh
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    protected function get_all_products()
+    protected function get_all_products_model()
     {
         //Pega todos os produtos do banco de dados
-        $query = "SELECT * FROM products";
+        $query = "SELECT * FROM products ORDER BY name";
         $pdo = parent::connect();
         $stmt = $pdo->prepare($query);
         $stmt->execute();
@@ -85,6 +85,15 @@ class Product extends Dbh
         return $result;
     }
 
+    protected function search_product($search){
+        $query = "SELECT * FROM products WHERE MATCH(name) AGAINST(:search IN NATURAL LANGUAGE MODE);";
+        $pdo = parent::connect();
+        $stmt = $pdo->prepare($query);
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 
     protected function update_product_model($id, $name, $description, $price, $image, $quantity){
         //Modifica um produto no banco de dados

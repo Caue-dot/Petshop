@@ -27,7 +27,7 @@ a {
     align-items: center; /* Alinha verticalmente no centro */
 }
 img{
-    width: 30px;
+    width: 200px
 }
 .main-header .logo {
     margin: 0; /* Remove margem padrão do h1 */
@@ -63,12 +63,14 @@ img{
 }
 
 /* --- Estilos da Seção Hero (Primeira seção da página inicial) --- */
-.hero {
+/* .hero {
     background-color:#FFF5E1x; /* Verde claro para a seção hero */
     color:#FFFFFF;
     text-align: center;
     padding: 80px 20px;
-}
+} 
+
+*/
 
 .hero h2 {
     font-size: 3em;

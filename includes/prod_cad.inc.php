@@ -21,7 +21,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $session->init();
     $signup = new ProductContr(null, $name,$description,$price,$img,$quantity);
     $signup->cad_product();
+    header("Location: ../prod_list_admin.php?cad=success");
+  
 } else {
-    
     header("Location: ../index.php");
 }
+
+
+  die();
