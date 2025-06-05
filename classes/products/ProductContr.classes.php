@@ -107,14 +107,19 @@ class ProductContr extends Product
        
     }
 
-    public function search_product($search)
+    public function search_product($search, $redirect_error_path)
     {
-
         if (empty($search)) {
-            return null;
+            header("Location:" . $redirect_error_path . "?error=empty_search");
+            die();
         }
 
-        $products = parent::search_product($search);
+        $products = parent::search_product_model($search);
+
+        if ($this->is_products_empty($products)) {
+            header("Location:" . $redirect_error_path . "?error=empty");
+            die();
+        }
 
         $session = new Config_Session();
         $session->init();

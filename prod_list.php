@@ -25,9 +25,13 @@ if (!isset($_SESSION["products"])  && !isset($_GET["error"])) {
     <title>Document</title>
 </head>
 <body>
+    <form action="includes/prod_list.inc.php" method="GET">
+        <input type="text" name="search" placeholder="Buscar produto">
+        <input type="submit" value="Buscar">
+    </form>
     <?php
     $view->list_products();
-    $view->is_empty();
+    $view->check_errors();
     ?>
 </body>
 </html>

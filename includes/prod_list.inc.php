@@ -14,7 +14,12 @@ if (!isset($_SESSION["products"]) ) {
 
     $product_contr = new ProductContr();
 
-    $product_contr->get_all_products($redirect_path);
-    header("Location:".$redirect_path."?list=success");
+    if(isset($_GET["search"])){
+        $search = $_GET["search"];
+        $product_contr->search_product($search, $redirect_path);
+    }else{
+        $product_contr->get_all_products($redirect_path);
+        header("Location:".$redirect_path."?list=success");
+    }
     die();
 }

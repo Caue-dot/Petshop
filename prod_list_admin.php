@@ -35,7 +35,7 @@ if (!isset($_SESSION["products"]) && !isset($_GET["error"])) {
 
     <?php
         $view->list_products_admin();
-        $view->is_empty();
+        $view->check_errors();
     ?>
 
 </body>

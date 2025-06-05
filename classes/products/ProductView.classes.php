@@ -91,13 +91,26 @@ class ProductView
             echo '<br> <br> <br>';
         }
     }
-    public function is_empty()
+    public function check_errors()
     {
+
+        if(!isset($_GET["error"])){
+            return;
+        }
         //Checa se não há produtos registrados
-        if (isset($_GET["error"]) && $_GET["error"] === "empty") {
+
+        if ($_GET["error"] === "empty") {
             echo '<br>';
             echo "Não há nenhum produto";
+            return;
         }
+
+        if($_GET["error"] === "empty_search"){
+            echo'<br>';
+            echo "Insira algo no campo de pesquisa";
+        }
+
+        
     }
 
     public function edit_inputs()
