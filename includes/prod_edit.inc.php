@@ -16,14 +16,14 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $id = $_GET["id"];
    
     $product_contr = new ProductContr($id);
-    $product = $product_contr->get_product();
+    $product = $product_contr->get_product("../prod_edit.php");
 
     $session = new Config_Session();
     $session->init();
 
     $_SESSION["product"] = $product;
 
-    header("Location: ../prod_edit.php");
+    header("Location: ../prod_edit.php?id=$id");
     die();
 }else if($_SERVER["REQUEST_METHOD"]  == "POST"){
     $name = empty($_POST["name"]) ? null : $_POST["name"];

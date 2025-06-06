@@ -36,7 +36,7 @@ class ProductView
         }
     }
 
-    
+
     public function list_products()
     {
 
@@ -69,11 +69,11 @@ class ProductView
 
 
     public function show_product()
-    {   
+    {
         //Mostra um produto especifico
         if (isset($_SESSION["product"]) && $_SESSION["product"]) {
 
-            
+
             //Higieniza os inputs, para evitar cross-site-injection
             $product = $_SESSION["product"];
             $name = htmlspecialchars($product["name"]);
@@ -89,33 +89,43 @@ class ProductView
             echo '<br>';
             echo 'Estoque: <b> ' . $quantity . '</b>';
             echo '<br> <br> <br>';
+
+           
         }
     }
     public function check_errors()
     {
 
-        if(!isset($_GET["error"])){
+        if (!isset($_GET["error"])) {
             return;
         }
         //Checa se não há produtos registrados
 
-        if ($_GET["error"] === "empty") {
-            echo '<br>';
-            echo "Não há nenhum produto";
-            return;
+        echo '<br>';
+        switch ($_GET["error"]) {
+            case "empty":
+                echo "Não há nenhum produto";
+                die();
+                break;
+            case "empty_search":
+                echo "Insira algo no campo de pesquisa";
+                die();
+                break;
+            case "not_found":
+                echo "Produto não encontrado";
+                die();
+                break;
         }
-
-        if($_GET["error"] === "empty_search"){
-            echo'<br>';
-            echo "Insira algo no campo de pesquisa";
-        }
-
-        
     }
 
     public function edit_inputs()
     {
-        
+
+        if (!isset($_SESSION["product"]) || !$_SESSION["product"]) {
+            return;
+        }
+
+
         //Higieniza os inputs, para evitar cross-site-injection
         $product = $_SESSION["product"];
         $name = htmlspecialchars($product["name"]);
@@ -151,4 +161,6 @@ class ProductView
 
         echo '</form> ';
     }
+
+   
 }

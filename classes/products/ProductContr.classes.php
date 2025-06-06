@@ -132,10 +132,16 @@ class ProductContr extends Product
 
     //Edição
 
-    public function get_product()
+    public function get_product($redirect_error_path)
     {
         //Pega um produto especifico do banco de dados
-        return parent::get_product_model($this->id);
+        $product =  parent::get_product_model($this->id);
+        if(!$product){
+            header("Location:" . $redirect_error_path . "?error=not_found");
+            die();
+        }
+        return $product;
+        die();
     }
 
     public function delete_product($id)
