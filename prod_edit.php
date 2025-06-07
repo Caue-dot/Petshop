@@ -40,7 +40,7 @@ if(isset($_GET["id"]) && !isset($_SESSION["product"] )){
     <?php
 
     $view->check_errors();
-    $view->show_product();
+    $view->show_product(false);
     $view->edit_inputs();
     unset($_SESSION["product"]);
     
