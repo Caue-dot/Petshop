@@ -6,6 +6,13 @@ include_once("../classes/products/Product.classes.php");
 include_once("../classes/products/ProductContr.classes.php");
 include_once("../classes/Config_session.class.php");
 
+function print_console($data) {
+    $output = $data;
+    if (is_array($output))
+        $output = implode(',', $output);
+
+    echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
+}
 
 $session = new Config_Session();
 $session->init();
@@ -32,13 +39,12 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
     $img = $_FILES["img"];
     $quantity = ((int)$_POST["quantity"] == 0) ? null : (int)$_POST["quantity"];
-    
 
+    print_console($name);
     $product = $_SESSION["product"];
 
     $product_contr = new ProductContr(null, $name, $description, $price, $img, $quantity);
     $product_contr->update_product($product["id"]);
-    unset($_SESSION["product"]);
     header("location: ../prod_list_admin.php");
     die();
 }

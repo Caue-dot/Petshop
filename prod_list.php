@@ -8,6 +8,8 @@ $session->init();
 
 $view = new ProductView();
 
+include("classes/MainView.class.php");
+$main_view = new MainView();
 
 //Caso ja não tenha pego os produtos e ja não tenha sido retornado um erro, tenta conseguir a lista de todos os produtos
 if (!isset($_SESSION["products"])  && !isset($_GET["error"])) {
@@ -28,20 +30,7 @@ if (!isset($_SESSION["products"])  && !isset($_GET["error"])) {
 
 <body>
 
-
-    <header class="main-header">
-        <div class="container">
-            <img src="public/img/logo1.jpg" class="logo"><a href="index.html"></a>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="produtos.html">Produtos</a></li>
-                    <li><a href="informacao.html">Informacao</a></li>
-                    <li><a href="cadastro.html">Cadastro</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <?php $main_view->header(); ?>
 
 
     <form action="includes/prod_list.inc.php" method="GET">
@@ -61,12 +50,7 @@ if (!isset($_SESSION["products"])  && !isset($_GET["error"])) {
 
 
 
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Pet Shop Feliz. Todos os direitos reservados.</p>
-        </div>
-    </footer>
+  <?php $main_view->footer(); ?>
 </body>
 
 

@@ -32,7 +32,7 @@ class ProductView
 
                 echo '<br> <br> <br>';
             }
-            unset($_SESSION["products"]);
+
         }
     }
 
@@ -48,43 +48,38 @@ class ProductView
             foreach ($products as $product) {
 
                 //Higieniza os inputs, para evitar cross-site-injection
+                $product_id = $product["id"];
                 $name = htmlspecialchars($product["name"]);
                 $description = htmlspecialchars($product["description"]);
                 $price = filter_var($product["price"], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-                $price_installment = $price/3;
+                $price_installment = round($price/3,2);
                 $quantity = filter_var($product["quantity"], FILTER_SANITIZE_NUMBER_INT);
                 $img = filter_var($product["image"], FILTER_SANITIZE_URL);
 
-                // echo $name . " " . "R$" . $price;
-                // echo '<br>';
-                // echo '<img width=300 src=' . filter_var($product["image"], FILTER_SANITIZE_URL) . '>';
-                // echo '<br>';
-                // echo $product["description"];
-                // echo '<br>';
-                // echo 'Estoque: <b> ' . $quantity . '</b>';
-
-                // echo '<br> <br> <br>';
-
                 echo "
+            <a href=product.php?id=$product_id>
                 <div class='product-card'>
-                <div class='product-image-wrapper'>
-                    <img src=$img>
-                    <span class='badge new'></span> </div>
-                <h3 class='product-name'>$name</h3>
-                <div class='product-rating'>
-                    <i class='fas fa-star'></i>
-                    <i class='fas fa-star'></i>
-                    <i class='fas fa-star'></i>
-                    <i class='fas fa-star'></i>
-                    <i class='fas fa-star-half-alt'></i>
-                    <span>(120 Avaliações)</span>
+                    
+                    <div class='product-image-wrapper'>
+                        <img src=$img>
+                        <span class='badge new'></span> 
+                    </div>
+                    <h3 class='product-name'>$name</h3>
+                    <div class='product-rating'>
+                        <i class='fas fa-star'></i>
+                        <i class='fas fa-star'></i>
+                        <i class='fas fa-star'></i>
+                        <i class='fas fa-star'></i>
+                        <i class='fas fa-star-half-alt'></i>
+                        <span>(120 Avaliações)</span>
+                    </div>
+                    <p class='product-price'>
+                        <span class='original-price'>R$ $price</span>
+                        <br>
+                    </p>
+                    <p class='product-installment'>ou 3x de R$ $price_installment sem juros</p>
                 </div>
-                <p class='product-price'>
-                    <span class='original-price'>R$ $price</span>
-                		<br>
-                </p>
-                <p class='product-installment'>ou 3x de R$ $price_installment sem juros</p>
-            </div>
+            </a>
             ";
             }
             unset($_SESSION["products"]);
@@ -92,7 +87,7 @@ class ProductView
     }
 
 
-    public function show_product($button)
+    public function show_product($admin)
     {
         //Mostra um produto especifico
         if (isset($_SESSION["product"]) && $_SESSION["product"]) {
@@ -112,7 +107,9 @@ class ProductView
             echo '<br>';
             echo $description;
             echo '<br>';
-            echo 'Estoque: <b> ' . $quantity . '</b>';
+            if($admin){
+                echo 'Estoque: <b> ' . $quantity . '</b>';
+            }
            
 
             if($quantity <= 0){
@@ -121,7 +118,7 @@ class ProductView
                 return;
             }
 
-            if($button){
+            if(!$admin){
                 echo "<br><a href=includes/order.inc.php?cart=$product_id> <button> Adicionar ao carrinho </button> </a>";
             }
             echo '<br> <br> <br>';
@@ -167,14 +164,11 @@ class ProductView
         $quantity = filter_var($product["quantity"], FILTER_SANITIZE_NUMBER_INT);
 
 
-
-
         echo '<form id="edit" action="includes/prod_edit.inc.php" method="post" enctype="multipart/form-data">';
-
         //Preenche os inputs com os valores do produto editado
         echo "
             <h3>Nome: </h3>
-            <input type='text' name='name' value=$name>
+            <input type='text' name='name' value='$name'>
             <br>
             <h3>Descrição: </h3>
             <textarea form='edit' name='description'>$description</textarea>
@@ -183,7 +177,7 @@ class ProductView
             <input type='number' name='price' value=$price >
             <br>
             <h3>Quantidade do estoque</h3>
-            <input type='number' name='quantity' value=$quantity>
+            <input type='number' name='quantity' value='$quantity'>
             <br>
             <h3>Selecione uma imagem:</h3> 
             <input type='file' name='img'>

@@ -6,6 +6,9 @@ $session->init();
 
 include("classes/user_auth/UserView.classes.php");
 $view = new UserView();
+
+include("classes/MainView.class.php");
+$main_view = new MainView();
 ?>
 
 <html lang="pt-br">
@@ -17,20 +20,8 @@ $view = new UserView();
 
     </head>
 <body>
-		<header class="main-header">
-        <div class="container">
-            <img src="public/img/logo1.jpg" class="logo"><a href="index.html"></a>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="index.php">Início</a></li>
-                    <li><a href="prod_list.php">Produtos</a></li>
-                    <li><a href="informacao.html">Informacao</a></li>
-                    <?php $view->login_info()?>
-                </ul>
-            </nav>
-        </div>
-    </header>
-		
+
+	<?php $main_view->header(); ?>
     <main>
         <section class="hero">
             <h2>Seu Pet, Nossa Paixão!</h2>
@@ -111,16 +102,9 @@ $view = new UserView();
     </main>
 
 
-
-
-
-
+<?php $main_view->footer(); ?>
 
  
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Pet Shop Feliz. Todos os direitos reservados.</p>
-        </div>
-    </footer>
+    
 </body>
 </html>

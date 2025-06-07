@@ -81,9 +81,11 @@ a {
     text-align: center;
 }
 .product-grid-container {
+    display: flex;
     max-width: 1200px; /* Largura máxima do conteúdo */
     margin: 20px auto; /* Centraliza a grade na página */
     padding: 0 15px; /* Espaçamento lateral */
+    flex-direction: column;
 }
 
 /* Estilos da Grade de Produtos */
@@ -94,6 +96,7 @@ a {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 25px; /* Espaçamento entre os cards */
     justify-content: center; /* Centraliza os cards se não preencherem todas as colunas */
+    place-items: center; /* Modifiquei para centralizar os cards na pagina */
 }
 
 /* Estilos do Card de Produto Individual */
@@ -107,6 +110,8 @@ a {
     display: flex; /* Para flexbox interno do card */
     flex-direction: column; /* Organiza os itens verticalmente */
     transition: transform 0.2s ease-in-out; /* Efeito suave ao passar o mouse */
+    width: 260px; /* Adicionei uma largura fixa */
+    height: 450px; /* Adicionei uma altura fixa */
 }
 .product-card:hover {
     transform: translateY(-5px); /* Efeito de "levantar" ao passar o mouse */

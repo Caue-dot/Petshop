@@ -28,7 +28,7 @@ if(isset($_GET["id"]) && !isset($_SESSION["product"] )){
 <body>
     
     <?php
-    $view->show_product(true);
+    $view->show_product(false);
     unset($_SESSION["product"]);
     
     $view->check_errors();
