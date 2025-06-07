@@ -106,6 +106,18 @@ class ProductContr extends Product
        
        
     }
+    
+    public function get_product($redirect_error_path)
+    {
+        //Pega um produto especifico do banco de dados
+        $product =  parent::get_product_model($this->id);
+        if(!$product){
+            header("Location:" . $redirect_error_path . "?error=not_found");
+            die();
+        }
+        return $product;
+        die();
+    }
 
     public function search_product($search, $redirect_error_path)
     {
@@ -131,19 +143,6 @@ class ProductContr extends Product
 
 
     //Edição
-
-    public function get_product($redirect_error_path)
-    {
-        //Pega um produto especifico do banco de dados
-        $product =  parent::get_product_model($this->id);
-        if(!$product){
-            header("Location:" . $redirect_error_path . "?error=not_found");
-            die();
-        }
-        return $product;
-        die();
-    }
-
     public function delete_product($id)
     {
         //Deleta um produto do banco de dados
