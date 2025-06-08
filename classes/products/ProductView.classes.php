@@ -1,5 +1,13 @@
 <?php
 
+function print_console($data) {
+    $output = $data;
+    if (is_array($output))
+        $output = implode(',', $output);
+
+    echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
+}
+
 class ProductView
 {
     public function list_products_admin()
@@ -44,7 +52,7 @@ class ProductView
         if (isset($_SESSION["products"]) && $_SESSION["products"]) {
             $products = $_SESSION["products"];
 
-
+            
             foreach ($products as $product) {
 
                 //Higieniza os inputs, para evitar cross-site-injection
@@ -56,9 +64,10 @@ class ProductView
                 $quantity = filter_var($product["quantity"], FILTER_SANITIZE_NUMBER_INT);
                 $img = filter_var($product["image"], FILTER_SANITIZE_URL);
 
+                print_console($name);
                 echo "
-            <a href=product.php?id=$product_id>
                 <div class='product-card'>
+                <a href=product.php?id=$product_id>
                     
                     <div class='product-image-wrapper'>
                         <img src=$img>
@@ -78,11 +87,11 @@ class ProductView
                         <br>
                     </p>
                     <p class='product-installment'>ou 3x de R$ $price_installment sem juros</p>
+                    </a>
                 </div>
-            </a>
             ";
             }
-            unset($_SESSION["products"]);
+            //unset($_SESSION["products"]);
         }
     }
 
@@ -162,7 +171,7 @@ class ProductView
         $description = htmlspecialchars($product["description"]);
         $price = filter_var($product["price"], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
         $quantity = filter_var($product["quantity"], FILTER_SANITIZE_NUMBER_INT);
-
+        $animal = htmlspecialchars($product["animal"]);
 
         echo '<form id="edit" action="includes/prod_edit.inc.php" method="post" enctype="multipart/form-data">';
         //Preenche os inputs com os valores do produto editado
@@ -178,6 +187,9 @@ class ProductView
             <br>
             <h3>Quantidade do estoque</h3>
             <input type='number' name='quantity' value='$quantity'>
+            <br>
+            <h3>Tipo do animal</h3>
+            <input type='text' name='animal' value='$animal'>
             <br>
             <h3>Selecione uma imagem:</h3> 
             <input type='file' name='img'>

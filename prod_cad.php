@@ -35,6 +35,9 @@
         <h3>Quantidade do estoque</h3>
         <input type="number" name="quantity">
         <br>
+        <h3>Animal</h3>
+        <input type="text" name="animal">
+        <br>
         <h3>Selecione uma imagem:</h3> 
         <input type="file" name="img">
         <?php

@@ -96,7 +96,7 @@ a {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 25px; /* Espaçamento entre os cards */
     justify-content: center; /* Centraliza os cards se não preencherem todas as colunas */
-    place-items: center; /* Modifiquei para centralizar os cards na pagina */
+    place-items:center;  /* Modifiquei para centralizar os cards na pagina */
 }
 
 /* Estilos do Card de Produto Individual */

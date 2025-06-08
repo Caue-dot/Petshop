@@ -44,6 +44,7 @@ if (!isset($_SESSION["products"])  && !isset($_GET["error"])) {
             <?php
             $view->list_products();
             $view->check_errors();
+            unset($_SESSION["products"]);
             ?>
         </section>
     </main>

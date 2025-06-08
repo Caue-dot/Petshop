@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $session->init();
     $user = new UserContr($username, $pwd, $email);
     $user->create_user();
-    header("Location:" . $this->redirect_path. "?register=success");
+    header("Location: ../auth_page.php?register=success");
 } else {
     header("Location: ../../index.php");
    

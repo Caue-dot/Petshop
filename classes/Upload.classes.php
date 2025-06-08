@@ -33,7 +33,7 @@ class Upload
         }
 
 
-        if ($file["size"] > 500000) {
+        if ($file["size"] > 2000000) {
             header("Location:".$error_redirect_page."?error=file_too_big");
             die();
         }

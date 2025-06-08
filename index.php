@@ -38,36 +38,36 @@ $main_view = new MainView();
             <div class="pet-card dog-card">
                 <img src="public/img/logo cachorro.jpg" alt="Ícone de Cachorro">
                 <h2>Cachorros</h2>
-                <a href="#" class="btn-view-all">Ver todos</a>
+                <a href="includes/prod_list.inc.php?tag=cão cachorro" class="btn-view-all">Ver todos</a>
             </div>
 
             <div class="pet-card cat-card">
                 <img src="public/img/logogato1.jpg" alt="Ícone de Gato">
                 <h2>Gatos</h2>
-                <a href="#" class="btn-view-all">Ver todos</a>
+                <a href="includes/prod_list.inc.php?tag=gato" class="btn-view-all">Ver todos</a>
             </div>
         </section>
 
         <section class="popular-categories-section">
             <h2>Categorias Populares para Cachorros</h2>
             <div class="categories-list">
-                <a href="#" class="category-item">
+                <a href="includes/prod_list.inc.php?search=ração" class="category-item">
                     <img src="public/img/ração logo.png" alt="Ícone Ração">
                     <span>Rações Secas</span>
                 </a>
-                <a href="#" class="category-item">
+                <a href="includes/prod_list.inc.php?search=pulgas" class="category-item">
                     <img src="public/img/antipulgalogo.png" alt="Ícone Antipulgas">
                     <span>Antipulgas</span>
                 </a>
-                <a href="#" class="category-item">
+                <a href="includes/prod_list.inc.php?search=brinquedo bolinha" class="category-item">
                     <img src="public/img/brinquedo logo.png" alt="Ícone Brinquedos">
                     <span>Brinquedos</span>
                 </a>
-                <a href="#" class="category-item">
+                <a href="includes/prod_list.inc.php?search=areia shampoo" class="category-item">
                     <img src="public/img/higienelogo.png" alt="Ícone Tapete">
                     <span>Higiene</span>
                 </a>
-                <a href="#" class="category-item">
+                <a href="includes/prod_list.inc.php?search=remedio vermifugo" class="category-item">
                     <img src="public/img/logo medicamentos.png" alt="Ícone Medicamentos">
                     <span>Medicamentos</span>
                 </a>
@@ -77,23 +77,23 @@ $main_view = new MainView();
         <section class="popular-categories-section">
             <h2>Categorias Populares para Gatos</h2>
             <div class="categories-list">
-                <a href="#" class="category-item">
+                <a href="includes/prod_list.inc.php?search=ração" class="category-item">
                     <img src="public/img/raçãogatologo.png" alt="Ícone Ração">
                     <span>Rações Secas</span>
                 </a>
-                <a href="#" class="category-item">
+                <a href="includes/prod_list.inc.php?search=areia" class="category-item">
                     <img src="public/img/areialogo.png" alt="Ícone Areia">
                     <span>Areias</span>
                 </a>
-                <a href="#" class="category-item">
+                <a href="includes/prod_list.inc.php?search=arranhador" class="category-item">
                     <img src="public/img/arranhadorlogo.png" alt="Ícone Brinquedos">
                     <span>Arranhadores</span>
                 </a>
-                <a href="#" class="category-item">
+                <a href="includes/prod_list.inc.php?search=petisco" class="category-item">
                     <img src="public/img/logoprtiscos.png" alt="Ícone Petisco">
                     <span>Petiscos</span>
                 </a>
-                <a href="#" class="category-item">
+                <a href="includes/prod_list.inc.php?search=remedio suplemento vermifugo" class="category-item">
                     <img src="public/img/saudelogo.png" alt="Ícone Saúde">
                     <span>Saúde</span>
                 </a>

@@ -17,6 +17,9 @@ if (!isset($_SESSION["products"]) ) {
     if(isset($_GET["search"])){
         $search = $_GET["search"];
         $product_contr->search_product($search, $redirect_path);
+    }else if($_GET["tag"]){
+        $search = $_GET["tag"];
+        $product_contr->search_product_by_tag($search, $redirect_path);
     }else{
         $product_contr->get_all_products($redirect_path);
         header("Location:".$redirect_path."?list=success");

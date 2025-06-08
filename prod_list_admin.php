@@ -36,6 +36,7 @@ if (!isset($_SESSION["products"]) && !isset($_GET["error"])) {
     <?php
         $view->list_products_admin();
         $view->check_errors();
+        unset($_SESSION["products"]);
     ?>
 
 </body>

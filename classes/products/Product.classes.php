@@ -54,10 +54,11 @@ class Product extends Dbh
         $stmt->bindParam(":id", $id);
         $stmt->execute();
     }
-    protected function set_product($name, $user_id, $description, $price, $image, $quantity)
+    protected function set_product($name, $user_id, $description, $price, $image, $quantity, $animal)
     {
         //Insere no banco de dados um produto
-        $query = "INSERT INTO products(user_id, name, description, image, price, quantity) VALUES (:user_id, :name, :description, :image, :price, :quantity)";
+        $query = "INSERT INTO products(user_id, name, description, image, price, quantity, animal) 
+        VALUES (:user_id, :name, :description, :image, :price, :quantity, :animal)";
 
         $pdo = parent::connect();
         $stmt = $pdo->prepare($query);
@@ -67,6 +68,7 @@ class Product extends Dbh
         $stmt->bindParam(":image", $image);
         $stmt->bindParam(":price", $price);
         $stmt->bindParam(":quantity", $quantity);
+        $stmt->bindParam(":animal", $animal);
 
         $stmt->execute();
 
@@ -97,7 +99,20 @@ class Product extends Dbh
         return $result;
     }
 
-    protected function update_product_model($id, $name, $description, $price, $image, $quantity){
+    protected function search_product_by_tag_model($search){
+        $query = "SELECT * FROM products WHERE MATCH(animal) AGAINST(:search IN NATURAL LANGUAGE MODE);";
+        $pdo = parent::connect();
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(":search", $search);
+        
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+
+    protected function update_product_model($id, $name, $description, $price, $image, $quantity, $animal){
         //Modifica um produto no banco de dados
 
 
@@ -118,7 +133,8 @@ class Product extends Dbh
         description = COALESCE(:description, description),
         price = COALESCE(:price, price),
         image = COALESCE(:image, image),
-        quantity = COALESCE(:quantity, quantity)
+        quantity = COALESCE(:quantity, quantity),
+        animal = :animal
         WHERE id = :id
 
         ";
@@ -131,6 +147,7 @@ class Product extends Dbh
         $stmt->bindParam(":image", $img_path);
         $stmt->bindParam(":price", $price);
         $stmt->bindParam(":quantity", $quantity);
+        $stmt->bindParam(":animal", $animal);
 
         $stmt->execute();
     }
