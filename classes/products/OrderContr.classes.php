@@ -11,40 +11,45 @@ class OrderContr extends Order {
     }
     
 
-    private function get_products($status){
+    public function get_products($order_id){
 
-        $order = $this->get_order("cart");
+        $order = $this->get_order_by_id($order_id);
         if(!$order){
             //ERRO
             die();
         }
-        $order_id = $order["order_id"];
 
         return parent::get_products_model($order_id);
     }
     private function get_product($product_id){
-        $order = $this->get_order("cart");
+        $order = $this->get_orders("cart");
         $product = parent::get_product_model($order["order_id"], $product_id);
         
         return $product;
     }
 
-    private function get_order($status){
+    public function get_orders($status){
         return parent::get_orders_model($this->user_id, $status);
     }
+
+    public function get_order_by_id($order_id){
+        return parent::get_order_by_id_model($order_id);
+    }
+
+
 
     private function create_order(){
         parent::set_order($this->user_id, $this->price);
     }
 
     public function add_product($product_id){
-        $order = $this->get_order("cart");
+        $order = $this->get_orders("cart");
         if(!$order){
             $this->create_order();
-            $order = $this->get_order("cart");
+            $order = $this->get_orders("cart");
         }
 
-        $order_id = $order["order_id"];
+        $order_id = $order[0]["order_id"];
 
         $product = $this->get_product($product_id);
         
@@ -61,7 +66,7 @@ class OrderContr extends Order {
     }
 
     public function purchase_order(){
-        $order = $this->get_order("cart");
+        $order = $this->get_orders("cart");
         if(!$order){
             //ERRO
             die();

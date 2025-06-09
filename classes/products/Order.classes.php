@@ -33,6 +33,17 @@ class Order extends Dbh{
         $stmt->bindParam(":order_status", $status);
         $stmt->execute();
 
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+     protected function get_order_by_id_model($order_id){
+        $query = "SELECT * FROM orders WHERE order_id = :order_id ";
+        $pdo = parent::connect();
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(":order_id", $order_id);
+        $stmt->execute();
+
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
@@ -63,7 +74,11 @@ class Order extends Dbh{
     }
 
     protected function get_products_model($order_id){
-        $query = "SELECT * FROM orders_products WHERE order_id = :order_id;";
+        $query = "SELECT * FROM orders_products 
+                    INNER JOIN products ON orders_products.product_id = products.id
+                    WHERE orders_products.order_id = :order_id;";
+
+
         $pdo = parent::connect();
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(":order_id", $order_id);

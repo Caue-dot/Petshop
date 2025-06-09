@@ -1,12 +1,5 @@
 <?php
 
-function print_console($data) {
-    $output = $data;
-    if (is_array($output))
-        $output = implode(',', $output);
-
-    echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
-}
 
 class ProductView
 {
@@ -63,8 +56,6 @@ class ProductView
                 $price_installment = round($price/3,2);
                 $quantity = filter_var($product["quantity"], FILTER_SANITIZE_NUMBER_INT);
                 $img = filter_var($product["image"], FILTER_SANITIZE_URL);
-
-                print_console($name);
                 echo "
                 <div class='product-card'>
                 <a href=product.php?id=$product_id>
