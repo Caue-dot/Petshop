@@ -13,7 +13,13 @@ $main_view = new MainView();
 
 //Caso ja não tenha pego os produtos e ja não tenha sido retornado um erro, tenta conseguir a lista de todos os produtos
 if (!isset($_SESSION["products"])  && !isset($_GET["error"])) {
-    header("Location: includes/prod_list.inc.php");
+
+    if(isset($_GET["tag"])){
+        $tag = $_GET["tag"];
+        header("Location: includes/prod_list.inc.php?tag=$tag");
+    }else{
+        header("Location: includes/prod_list.inc.php");
+    }
 }
 
 ?>

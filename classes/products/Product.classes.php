@@ -100,7 +100,7 @@ class Product extends Dbh
     }
 
     protected function search_product_by_tag_model($search){
-        $query = "SELECT * FROM products WHERE MATCH(animal) AGAINST(:search IN NATURAL LANGUAGE MODE);";
+        $query = "SELECT * FROM products WHERE MATCH(tag) AGAINST(:search IN NATURAL LANGUAGE MODE);";
         $pdo = parent::connect();
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(":search", $search);
@@ -112,7 +112,7 @@ class Product extends Dbh
     }
 
 
-    protected function update_product_model($id, $name, $description, $price, $image, $quantity, $animal){
+    protected function update_product_model($id, $name, $description, $price, $image, $quantity, $tag){
         //Modifica um produto no banco de dados
 
 
@@ -134,7 +134,7 @@ class Product extends Dbh
         price = COALESCE(:price, price),
         image = COALESCE(:image, image),
         quantity = COALESCE(:quantity, quantity),
-        animal = :animal
+        tag = :tag
         WHERE id = :id
 
         ";
@@ -147,7 +147,7 @@ class Product extends Dbh
         $stmt->bindParam(":image", $img_path);
         $stmt->bindParam(":price", $price);
         $stmt->bindParam(":quantity", $quantity);
-        $stmt->bindParam(":animal", $animal);
+        $stmt->bindParam(":tag", $tag);
 
         $stmt->execute();
     }

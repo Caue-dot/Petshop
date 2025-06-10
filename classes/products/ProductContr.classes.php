@@ -9,19 +9,19 @@ class ProductContr extends Product
     private $price;
     private $img;
     private $quantity;
-    private $animal;
+    private $tag;
 
     private $redirect_cad_path = "../prod_cad.php";
     private $redirect_list_path = "../prod_list.php";
 
-    public function __construct($id = null, $name = null, $description = null, $price = null, $img = null, $quantity = null, $animal = null)
+    public function __construct($id = null, $name = null, $description = null, $price = null, $img = null, $quantity = null, $tag = null)
     {
         $this->name  = $name;
         $this->description = $description;
         $this->price = $price;
         $this->img = $img;
         $this->quantity = $quantity;
-        $this->animal = $animal;
+        $this->tag = $tag;
 
         if ($id == null) {
             $this->id = parent::get_id_by_name($this->name);
@@ -86,7 +86,7 @@ class ProductContr extends Product
 
         $upload = new Upload();
         $img_path = $upload->upload_image($this->img, $this->redirect_cad_path);
-        parent::set_product($this->name, $user_id, $this->description, $this->price, $img_path, $this->quantity, $this->animal);
+        parent::set_product($this->name, $user_id, $this->description, $this->price, $img_path, $this->quantity, $this->tag);
 
         
         
@@ -163,7 +163,7 @@ class ProductContr extends Product
         $session->init();
 
         $_SESSION["products"] = $products;
-        header("Location:" . $this->redirect_list_path . "?list=success");
+        header("Location:" . $this->redirect_list_path . "?tag=$search");
         die();
     }
 
@@ -178,6 +178,6 @@ class ProductContr extends Product
     public function update_product($id)
     {
         //Atualiza um produto no banco de dados
-        parent::update_product_model($id, $this->name, $this->description, $this->price, $this->img, $this->quantity, $this->animal);
+        parent::update_product_model($id, $this->name, $this->description, $this->price, $this->img, $this->quantity, $this->tag);
     }
 }

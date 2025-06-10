@@ -32,10 +32,10 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
     $img = $_FILES["img"];
     $quantity = ((int)$_POST["quantity"] == 0) ? null : (int)$_POST["quantity"];
-    $animal = $_POST["animal"];
+    $tag = $_POST["animal"];
     $product = $_SESSION["product"];
 
-    $product_contr = new ProductContr(null, $name, $description, $price, $img, $quantity,$animal);
+    $product_contr = new ProductContr(null, $name, $description, $price, $img, $quantity,$tag);
     $product_contr->update_product($product["id"]);
     header("location: ../prod_list_admin.php");
     die();

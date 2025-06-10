@@ -18,6 +18,7 @@ class ProductView
                 $description = htmlspecialchars($product["description"]);
                 $price = filter_var($product["price"], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
                 $quantity = filter_var($product["quantity"], FILTER_SANITIZE_NUMBER_INT);
+                $tag = htmlspecialchars($product["tag"]);
 
                 echo $name . " " . "R$" . $price;
                 echo '<br>';
@@ -26,6 +27,8 @@ class ProductView
                 echo $product["description"];
                 echo '<br>';
                 echo 'Estoque: <b> ' . $quantity . '</b>';
+                echo '<br>';
+                echo "Tags:<b>$tag</b>";
                 echo '<br>';
                 echo '<a href="includes/prod_edit.inc.php?id=' . $product["id"] . '" ><button> Editar Produto </button> </a>';
                 echo '<br>';
@@ -162,7 +165,7 @@ class ProductView
         $description = htmlspecialchars($product["description"]);
         $price = filter_var($product["price"], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
         $quantity = filter_var($product["quantity"], FILTER_SANITIZE_NUMBER_INT);
-        $animal = htmlspecialchars($product["animal"]);
+        $tag = htmlspecialchars($product["tag"]);
 
         echo '<form id="edit" action="includes/prod_edit.inc.php" method="post" enctype="multipart/form-data">';
         //Preenche os inputs com os valores do produto editado
@@ -179,8 +182,8 @@ class ProductView
             <h3>Quantidade do estoque</h3>
             <input type='number' name='quantity' value='$quantity'>
             <br>
-            <h3>Tipo do animal</h3>
-            <input type='text' name='animal' value='$animal'>
+            <h3>Tags</h3>
+            <input type='text' name='animal' value='$tag'>
             <br>
             <h3>Selecione uma imagem:</h3> 
             <input type='file' name='img'>
