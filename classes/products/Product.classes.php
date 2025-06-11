@@ -36,7 +36,7 @@ class Product extends Dbh
     
 
 
-    protected function delete_product($id)
+    protected function delete_product_model($id)
     {
         //Deleta um produto com um determinado id do banco de dados
 
@@ -54,11 +54,11 @@ class Product extends Dbh
         $stmt->bindParam(":id", $id);
         $stmt->execute();
     }
-    protected function set_product($name, $user_id, $description, $price, $image, $quantity, $animal)
+    protected function set_product($name, $user_id, $description, $price, $image, $quantity, $tag)
     {
         //Insere no banco de dados um produto
-        $query = "INSERT INTO products(user_id, name, description, image, price, quantity, animal) 
-        VALUES (:user_id, :name, :description, :image, :price, :quantity, :animal)";
+        $query = "INSERT INTO products(user_id, name, description, image, price, quantity, tag) 
+        VALUES (:user_id, :name, :description, :image, :price, :quantity, :tag)";
 
         $pdo = parent::connect();
         $stmt = $pdo->prepare($query);
@@ -68,7 +68,7 @@ class Product extends Dbh
         $stmt->bindParam(":image", $image);
         $stmt->bindParam(":price", $price);
         $stmt->bindParam(":quantity", $quantity);
-        $stmt->bindParam(":animal", $animal);
+        $stmt->bindParam(":tag", $tag);
 
         $stmt->execute();
 

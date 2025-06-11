@@ -1,5 +1,7 @@
 <?php
-
+include_once("classes/Dbh.inc.php");
+include_once("classes/products/Product.classes.php");
+include_once("classes/products/ProductContr.classes.php");
 
 class OrderContr extends Order {
     private $user_id;
@@ -71,6 +73,7 @@ class OrderContr extends Order {
             //ERRO
             die();
         }
+        $product_contr = new ProductContr();
         $order_id = $order["order_id"];
         parent::set_order_status($order_id, "purchased");
     }

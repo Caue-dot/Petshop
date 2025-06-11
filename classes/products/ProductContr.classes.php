@@ -169,15 +169,23 @@ class ProductContr extends Product
 
 
     //Edição
-    public function delete_product($id)
+    public function delete_product()
     {
         //Deleta um produto do banco de dados
-        parent::delete_product($id);
+        parent::delete_product_model($this->id);
     }
 
-    public function update_product($id)
+    public function update_product()
     {
         //Atualiza um produto no banco de dados
-        parent::update_product_model($id, $this->name, $this->description, $this->price, $this->img, $this->quantity, $this->tag);
+        parent::update_product_model($this->id, $this->name, $this->description, $this->price, $this->img, $this->quantity, $this->tag);
+    }
+
+
+    public function change_quantity($quantity)
+    {
+        //Atualiza um produto no banco de dados
+        $product = $this->get_product("index.php");
+        parent::update_product_model($this->id, $this->name, $this->description, $this->price, $this->img, $this->quantity, $this->tag);
     }
 }

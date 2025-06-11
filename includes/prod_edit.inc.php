@@ -35,8 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $tag = $_POST["animal"];
     $product = $_SESSION["product"];
 
-    $product_contr = new ProductContr(null, $name, $description, $price, $img, $quantity,$tag);
-    $product_contr->update_product($product["id"]);
+    $product_contr = new ProductContr($product["id"], $name, $description, $price, $img, $quantity,$tag);
+    $product_contr->update_product();
     header("location: ../prod_list_admin.php");
     die();
 }

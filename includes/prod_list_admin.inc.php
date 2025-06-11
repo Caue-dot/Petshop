@@ -9,11 +9,10 @@ if (!isset($_SESSION["products"]) ) {
     include '../classes/products/Product.classes.php';
     include '../classes/products/ProductContr.classes.php';
 
-    $product_contr = new ProductContr();
-
+    $id = $_GET["delete"];
+    $product_contr = new ProductContr($id);
     if (isset($_GET["delete"])) {
-        $id = $_GET["delete"];
-        $product_contr->delete_product($id);
+        $product_contr->delete_product();
     }
 
     $product_contr->get_all_products($redirect_path);
