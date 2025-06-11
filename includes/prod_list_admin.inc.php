@@ -10,7 +10,7 @@ if (!isset($_SESSION["products"]) ) {
     include '../classes/products/ProductContr.classes.php';
 
     $id = $_GET["delete"];
-    $product_contr = new ProductContr($id);
+    $product_contr = new ProductContr();
     if (isset($_GET["delete"])) {
         $product_contr->delete_product();
     }

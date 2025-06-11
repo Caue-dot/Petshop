@@ -8,16 +8,12 @@ $session->init();
 include '../classes/Dbh.inc.php';
 include '../classes/products/Order.classes.php';
 include '../classes/products/OrderContr.classes.php';
-include '../classes/products/Product.classes.php';
-include '../classes/products/ProductContr.classes.php';
-
 
 
 if (isset($_GET["id"]) && isset($_SESSION["user_id"])) {
     $user_id = $_SESSION["user_id"];
 
     $order_contr = new OrderContr($user_id);
-    $product_contr = new ProductContr();
     $order_id = $_GET["id"];
 
 

@@ -151,5 +151,8 @@ class Product extends Dbh
 
         $stmt->execute();
     }
+
+
+    
 }
 

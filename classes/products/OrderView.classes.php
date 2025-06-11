@@ -46,9 +46,6 @@ class OrderView
                 echo '<img width=300 src=' . filter_var($product["image"], FILTER_SANITIZE_URL) . '>';
                 echo '<br>';
                 echo $product["description"];
-                echo '<br>';
-                echo 'Estoque: <b> ' . $quantity . '</b>';
-
                 echo '<br> <br> <br>';
             }
         }

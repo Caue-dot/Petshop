@@ -182,10 +182,4 @@ class ProductContr extends Product
     }
 
 
-    public function change_quantity($quantity)
-    {
-        //Atualiza um produto no banco de dados
-        $product = $this->get_product("index.php");
-        parent::update_product_model($this->id, $this->name, $this->description, $this->price, $this->img, $this->quantity, $this->tag);
-    }
 }

@@ -1,7 +1,7 @@
 <?php
-include_once("classes/Dbh.inc.php");
-include_once("classes/products/Product.classes.php");
-include_once("classes/products/ProductContr.classes.php");
+include_once("../classes/Dbh.inc.php");
+include_once("../classes/products/Product.classes.php");
+include_once("../classes/products/ProductContr.classes.php");
 
 class OrderContr extends Order {
     private $user_id;
@@ -71,11 +71,19 @@ class OrderContr extends Order {
         $order = $this->get_orders("cart");
         if(!$order){
             //ERRO
-            die();
+            // die();
         }
-        $product_contr = new ProductContr();
-        $order_id = $order["order_id"];
+
+        $order_id = $order[0]["order_id"];
+
+        $this->remove_quantity($order_id);
         parent::set_order_status($order_id, "purchased");
+    }
+
+    
+    private function remove_quantity($order_id)
+    {
+        parent::remove_quantity_from_order($order_id);
     }
 
 }
