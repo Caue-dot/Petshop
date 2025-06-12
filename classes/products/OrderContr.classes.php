@@ -25,7 +25,7 @@ class OrderContr extends Order {
     }
     private function get_product($product_id){
         $order = $this->get_orders("cart");
-        $product = parent::get_product_model($order["order_id"], $product_id);
+        $product = parent::get_product_model($order[0]["order_id"], $product_id);
         
         return $product;
     }
@@ -44,7 +44,7 @@ class OrderContr extends Order {
         parent::set_order($this->user_id, $this->price);
     }
 
-    public function add_product($product_id){
+    public function add_product($product_id, $price){
         $order = $this->get_orders("cart");
         if(!$order){
             $this->create_order();
@@ -54,15 +54,16 @@ class OrderContr extends Order {
         $order_id = $order[0]["order_id"];
 
         $product = $this->get_product($product_id);
-        
         if($product){
 
             //Checa se já possui o item no carrinho caso já possua aumenta a quantidade
             $product_id = $product["product_id"];
             $product_quantity = $product["quantity"];   
             parent::set_quantity($order_id, $product_id , $product_quantity+1);
+            parent::add_price_order($order_id, $price);
             return;
         }
+        parent::add_price_order($order_id, $price);
         parent::set_product($order_id, $product_id, 1);
 
     }

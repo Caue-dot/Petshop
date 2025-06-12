@@ -20,7 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
         $product_id = $_GET["cart"];
 
         $order_contr = new OrderContr($user_id);
-        $order_contr->add_product($product_id);
+        $product = $_SESSION["product"];
+        $order_contr->add_product($product_id, $product["price"]);
         header("Location: ../product.php?id=$product_id&added_cart=success");
     }
 }

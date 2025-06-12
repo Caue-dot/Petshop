@@ -96,14 +96,25 @@ class Order extends Dbh{
         $stmt->bindParam(":product_id", $product_id);
         $stmt->bindParam(":quantity", $quantity);
         $stmt->execute();
+        
 
     }
 
+
+    protected function add_price_order($order_id, $price){
+        $query = 'UPDATE orders SET price = price + :price WHERE order_id = :order_id ;';
+        $pdo = parent::connect();
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(":order_id", $order_id);
+        $stmt->bindParam(":price", $price);
+        $stmt->execute();
+    }
+
     protected function remove_quantity_from_order($order_id){
-        $query = "UPDATE products AS p
+        $query = 'UPDATE products AS p
                 INNER JOIN orders_products as op ON op.product_id = p.id
-                SET p.quantity = p.quantity-1 
-                WHERE op.order_id = :id;";
+                SET p.quantity = p.quantity - op.quantity 
+                WHERE op.order_id = :id;';
 
         $pdo = parent::connect();
         $stmt = $pdo->prepare($query);
