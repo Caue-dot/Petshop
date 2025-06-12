@@ -7,10 +7,6 @@ $session->init();
 include_once 'classes/products/OrderView.classes.php';
 $view = new OrderView();
 
-//Caso não tenha uma sessão volta pro index.php
-if (!isset($_SESSION["user_id"])) {
-    header("Location: index.php");
-}
 
 $id = $_GET["id"];
 

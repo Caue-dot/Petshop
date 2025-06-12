@@ -3,6 +3,12 @@
 //Listagem de produtos no painel administrativo
 
 $redirect_path = "../prod_list_admin.php";
+
+if (!isset($_SESSION["user_id"]) || $_SESSION["user_username"] != "admin") {
+    header("Location: ../index.php");
+    die();
+}
+
 if (!isset($_SESSION["products"]) ) {
 
     include '../classes/Dbh.inc.php';

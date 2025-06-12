@@ -11,6 +11,11 @@ $session = new Config_Session();
 $session->init();
 
 
+if (!isset($_SESSION["user_id"]) || $_SESSION["user_username"] != "admin") {
+    header("Location: ../index.php");
+    die();
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
     //Pega as informações do produto a ser editado
