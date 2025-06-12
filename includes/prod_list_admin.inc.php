@@ -1,5 +1,6 @@
 <?php
 
+//Listagem de produtos no painel administrativo
 
 $redirect_path = "../prod_list_admin.php";
 if (!isset($_SESSION["products"]) ) {
@@ -11,12 +12,17 @@ if (!isset($_SESSION["products"]) ) {
 
     $id = $_GET["delete"];
     $product_contr = new ProductContr();
+
+    //Caso na requisição tenha "Delete", deleta o produto
     if (isset($_GET["delete"])) {
         $product_contr->delete_product();
     }
 
+    //Pega todos os produtos
     $product_contr->get_all_products($redirect_path);
     header("Location:".$redirect_path."?list=success");
     die();
 
+}else{
+    header("Location: ../index.php");
 }

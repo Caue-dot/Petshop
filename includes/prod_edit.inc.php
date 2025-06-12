@@ -1,5 +1,5 @@
 <?php
-
+//Edição de produtos
 include_once ('../classes/Config_session.class.php');
 include_once("../classes/Dbh.inc.php");
 include_once("../classes/products/Product.classes.php");
@@ -12,6 +12,14 @@ $session->init();
 
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
+
+    //Pega as informações do produto a ser editado
+
+    if(!isset($_GET["id"])){
+        header("Location: ../index.php");
+        die();
+    };
+
 
     $id = $_GET["id"];
    
@@ -26,6 +34,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     header("Location: ../prod_edit.php?id=$id");
     die();
 }else if($_SERVER["REQUEST_METHOD"]  == "POST"){
+
+    //Pega as informações que foram enviadas no formulario para editar o produto
     $name = empty($_POST["name"]) ? null : $_POST["name"];
     $description =  empty($_POST["description"]) ? null : $_POST["description"];
     $price = ((int)$_POST["price"] == 0) ? null : (int)$_POST["price"];

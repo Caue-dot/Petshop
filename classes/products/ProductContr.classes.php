@@ -141,8 +141,7 @@ class ProductContr extends Product
         $session->init();
 
         $_SESSION["products"] = $products;
-        header("Location:" . $this->redirect_list_path . "?list=success");
-        die();
+       
     }
 
      public function search_product_by_tag($search, $redirect_error_path)
@@ -163,8 +162,6 @@ class ProductContr extends Product
         $session->init();
 
         $_SESSION["products"] = $products;
-        header("Location:" . $this->redirect_list_path . "?tag=$search");
-        die();
     }
 
 

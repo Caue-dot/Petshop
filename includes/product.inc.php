@@ -1,4 +1,5 @@
 <?php
+//Pagina de produto
 
 include_once ('../classes/Config_session.class.php');
 include_once("../classes/Dbh.inc.php");
@@ -21,6 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["id"])) {
     $_SESSION["product"] = $product;
 
     header("Location: ../product.php?id=$id");
+}else{
+    header("Location: ../index.php");
 }
 
  die();

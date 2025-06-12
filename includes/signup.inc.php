@@ -1,5 +1,5 @@
 <?php
-
+//Cadastro
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //Verifica se e a requisição é post e coloca os valores do formulario em variáveis
 
@@ -15,6 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $session = new Config_Session();
     $session->init();
     $user = new UserContr($username, $pwd, $email);
+    //Cria o usuario
     $user->create_user();
     header("Location: ../auth_page.php?register=success");
 } else {

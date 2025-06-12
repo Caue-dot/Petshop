@@ -20,6 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $session = new Config_Session();
     $session->init();
+
+    //Cadastra o produto
     $signup = new ProductContr(null, $name,$description,$price,$img,$quantity,$animal);
     $signup->cad_product();
     header("Location: ../prod_list_admin.php?cad=success");
