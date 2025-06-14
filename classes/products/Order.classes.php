@@ -113,7 +113,7 @@ class Order extends Dbh{
     protected function remove_quantity_from_order($order_id){
         $query = 'UPDATE products AS p
                 INNER JOIN orders_products as op ON op.product_id = p.id
-                SET p.quantity = p.quantity - op.quantity 
+                SET p.quantity = p.quantity - 1
                 WHERE op.order_id = :id;';
 
         $pdo = parent::connect();

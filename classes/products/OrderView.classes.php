@@ -14,7 +14,7 @@ class OrderView
                 //Higieniza os inputs, para evitar cross-site-injection
                 $order_id = $order["order_id"];
                 $price = filter_var($order["price"], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-                
+
                 echo "<a href='order_products.php?id=$order_id'>";
                 echo "Pedido n:" . $order_id . " " . "R$" . $price;
                 echo "</a>";

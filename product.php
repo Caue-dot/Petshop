@@ -9,13 +9,17 @@ $session->init();
 $view = new ProductView();
 
 
-
-if(isset($_GET["id"]) && !isset($_SESSION["product"]) || $_SESSION["product"]["id"] != $_GET["id"] ){
-    //Caso tenha um id no link e não tenha pego um produto no banco ou o produto na sessão for diferente do produto requisitado, tenta achar um produto com o id fornecido
-    header("location: includes/product.inc.php?id=" . $_GET["id"]);
-}else if(!isset($_GET["error"]) && !isset($_SESSION["product"])){
-    //Evitando que a pessoa acesse um link invalido
-    header("Location: product.php?error=not_found");
+if(!isset($_GET["error"])){
+    if(isset($_GET["id"]) && !isset($_SESSION["product"]) || $_SESSION["product"]["id"] != $_GET["id"] ){
+        //Caso tenha um id no link e não tenha pego um produto no banco ou o produto na sessão for diferente do produto requisitado, tenta achar um produto com o id fornecido
+        header("location: includes/product.inc.php?id=" . $_GET["id"]);
+    }else if(!isset($_SESSION["product"])){
+        //Evitando que a pessoa acesse um link invalido
+        header("Location: product.php?error=not_found");
+    }
+}else{
+    echo "a";
+    die();
 }
 ?>
 

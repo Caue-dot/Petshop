@@ -15,7 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     include_once '../classes/Dbh.inc.php';
     include_once '../classes/products/Order.classes.php';
     include_once '../classes/products/OrderContr.classes.php';
-
+    include_once '../classes/products/Product.classes.php';
+    include_once '../classes/products/ProductContr.classes.php';
 
     if (isset($_GET["cart"])) {
         //So adiciona o produto se tiver na requisição "cart"
@@ -23,9 +24,11 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
         $product_id = $_GET["cart"];
 
         $order_contr = new OrderContr($user_id);
-        $product = $_SESSION["product"];
+        $product_contr = new ProductContr($product_id);
+        $product = $product_contr->get_product("../product.php");
+
         //Adiciona o produto ao pedido com o id do produto e o preço
-        $order_contr->add_product($product_id, $product["price"]);
+        $order_contr->add_product($product, "../product.php");
         //Redireciona o usuario de volta para a pagina do produto
         header("Location: ../product.php?id=$product_id&added_cart=success");
     }else{

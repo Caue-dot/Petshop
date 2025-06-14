@@ -335,6 +335,61 @@ h1 {
     margin-bottom: 30px;
 }
 
+h1 {
+    text-align: center;
+    color:#444444;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    margin-bottom: 15px; /* Espaçamento entre os grupos de formulário */
+}
+
+label {
+    display: block; /* Garante que o label ocupe sua própria linha */
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+textarea,
+input[type="file"] {
+    width: calc(100% - 20px); /* Ocupa quase 100% da largura, descontando o padding */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box; /* Inclui padding e borda na largura total */
+}
+
+/* Estilo específico para input de arquivo para melhor visualização */
+input[type="file"] {
+    border: none; /* Remove a borda padrão */
+    padding: 5px 0; /* Ajusta o padding para o tipo file */
+}
+
+textarea {
+    resize: vertical; /* Permite que o usuário redimensione a área de texto verticalmente */
+    min-height: 80px; /* Altura mínima para a área de texto */
+}
+
+button {
+    background-color:#4DB6AC; /* Cor de fundo azul */
+    color: black;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+    font-size: 18px;
+    width: 100%; /* Botão ocupa 100% da largura */
+    transition: background-color 0.3s ease; /* Efeito suave ao passar o mouse */
+}
+
+button:hover {
+    background-color:#FFF5E1; /* Cor mais escura ao passar o mouse */
+}
 
 footer {
     text-align: center;

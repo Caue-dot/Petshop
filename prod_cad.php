@@ -1,53 +1,74 @@
 <?php
-    
-    include_once 'classes/Config_session.class.php';
-    $session = new Config_Session();
-    $session->init();
-    
 
-    //Caso não tenha uma sessão e o nome de usuario não for admin volta pra pagina inicial
-    if(!isset($_SESSION["user_id"]) || $_SESSION["user_username"] != "admin"){
-        header("Location: index.php");
-    }
+include_once 'classes/Config_session.class.php';
+$session = new Config_Session();
+$session->init();
+
+include("classes/MainView.class.php");
+$main_view = new MainView();
+
+//Caso não tenha uma sessão e o nome de usuario não for admin volta pra pagina inicial
+if (!isset($_SESSION["user_id"]) || $_SESSION["user_username"] != "admin") {
+    header("Location: index.php");
+}
 ?>
 
 
 
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="public/css/style.css">
     <title>Document</title>
 </head>
+
 <body>
-    <h1>Cadastro de produto </h1>
+    <?php
+    $main_view->header();
+    ?>
+    <br>
+    <div class='container'>
+        <h1>Cadastro de Produtos</h1>
+        <form action='includes/prod_cad.inc.php' method='POST' enctype='multipart/form-data'>
+            <div class='form-group'>
+                <label for='productName'>Nome do Produto:</label>
+                <input type='text' id='productName' name='name' required>
+            </div>
 
-    <form id="cad" action="includes/prod_cad.inc.php" method="post" enctype="multipart/form-data"> 
-        <h3>Nome: </h3>
-        <input type="text" name="name">
-        <br>
-        <h3>Descrição: </h3>
-        <textarea form ="cad" name="description"></textarea>
-        <br>
-        <h3>Preço: </h3>
-        <input type="number" name="price" step=0.01>
-        <br>
-        <h3>Quantidade do estoque</h3>
-        <input type="number" name="quantity">
-        <br>
-        <h3>Animal</h3>
-        <input type="text" name="animal">
-        <br>
-        <h3>Selecione uma imagem:</h3> 
-        <input type="file" name="img">
-        <?php
-        
-        ?>
-        <br><br>
-        <input type="submit" value = "Submit" name="submit">
+            <div class='form-group'>
+                <label for='description'>Descrição:</label>
+                <textarea id='description' name='description' rows='4'></textarea>
+            </div>
 
-    </form> 
+            <div class='form-group'>
+                <label for='price'>Preço (R$):</label>
+                <input type='number' id='price' name='price' step='0.01' min='0' required>
+            </div>
 
-    
+            <div class='form-group'>
+                <label for='quantity'>Quantidade:</label>
+                <input type='number' id='quantity' name='quantity' min='0' required>
+            </div>
+
+            <div class='form-group'>
+                <label for='tags'>Tags (separadas por vírgula):</label>
+                <input type='text' id='tags' name='tag' placeholder='Ex: Ração, Gato, Saude'>
+            </div>
+
+            <div class='form-group'>
+                <label for='productImage'>Imagem do Produto:</label>
+                <input type='file' id='productImage' name='img' accept='image/*'>
+            </div>
+
+            <button type='submit'>Cadastrar Produto</button>
+        </form>
+    </div>
+    <?php
+    $main_view->footer();
+    ?>
+
 </body>
+
 </html>

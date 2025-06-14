@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $price = (int)$price;
     $img = $_FILES["img"];
     $quantity = $_POST["quantity"];
-    $animal = $_POST["animal"];
+    $tag = $_POST["tag"];
     
 
 
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $session->init();
 
     //Cadastra o produto
-    $signup = new ProductContr(null, $name,$description,$price,$img,$quantity,$animal);
+    $signup = new ProductContr(null, $name,$description,$price,$img,$quantity,$tag);
     $signup->cad_product();
     header("Location: ../prod_list_admin.php?cad=success");
   

@@ -8,7 +8,7 @@ include_once 'classes/products/OrderView.classes.php';
 $view = new OrderView();
 
 
-if (!isset($_SESSION["orders"])) {
+if (!isset($_SESSION["orders"]) && !isset($_GET["error"])) {
     //Caso não tenha pego um pedido no banco, tenta achar um pedido
     header("location: includes/orders.inc.php");
 } 

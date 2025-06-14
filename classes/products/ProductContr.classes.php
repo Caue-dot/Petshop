@@ -115,12 +115,11 @@ class ProductContr extends Product
     {
         //Pega um produto especifico do banco de dados
         $product =  parent::get_product_model($this->id);
-        if(!$product){
-            header("Location:" . $redirect_error_path . "?error=not_found");
-            die();
-        }
+        // if(!$product){
+        //     header("Location:" . $redirect_error_path . "?error=not_found");
+        //     die();
+        // }
         return $product;
-        die();
     }
 
     public function search_product($search, $redirect_error_path)

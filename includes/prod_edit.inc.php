@@ -1,6 +1,5 @@
 <?php
 //Edição de produtos
-include_once ('../classes/Config_session.class.php');
 include_once("../classes/Dbh.inc.php");
 include_once("../classes/products/Product.classes.php");
 include_once("../classes/products/ProductContr.classes.php");
