@@ -1,0 +1,273 @@
+body{ 
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color:#444444;
+    background-color:#FFB347
+}
+
+
+
+.container {
+    width:8ZX0; /* Largura do conteúdo principal */
+    max-width: 1200px; /* Largura máxima para não ficar muito largo em telas grandes */
+    margin: 0 auto; /* Centraliza o container */
+}
+.main-header {
+    background-color: #4DB6AC; /* Azul suave para o cabeçalho */
+    color:#FFFFFF; /* Texto branco */
+    padding: 20px 0; /* Espaçamento interno em cima/baixo */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra suave */
+}
+
+.main-header .container {
+    display: flex; /* Usa Flexbox para alinhar itens na mesma linha */
+    justify-content: space-between; /* Espaça o logo e a navegação */
+    align-items: center; /* Alinha verticalmente no centro */
+}
+
+.main-header .logo {
+    margin: 0; /* Remove margem padrão do h1 */
+    font-size: 2.2em; /* Tamanho do logo */
+}
+
+.main-header .logo a {
+    color: #fff; /* Cor branca para o link do logo */
+    font-weight: bold;
+}
+
+
+
+a { 
+    text-decoration: none; 
+} 
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    letter-spacing: 1px;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding: 30px 20px;
+}
+
+.cart-container {
+    display: flex;
+    flex-direction: column; /* Organiza as seções verticalmente */
+    gap: 30px;
+    max-width: 900px; /* Largura máxima para o contêiner geral */
+    width: 100%;
+}
+
+/* Seção de Itens do Carrinho - Listagem Vertical */
+.cart-container h2 {
+    color:  black; /* Verde mais escuro */
+    margin-top: 0;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 15px;
+    font-size: 1.8em;
+}
+
+.product-list {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+}
+
+.product-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Espaça os itens horizontalmente */
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px; /* Espaçamento entre os itens */
+}
+
+.product-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.product-item img {
+    width: 80px; /* Imagem mais compacta */
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 15px;
+    border: 1px solid #ddd;
+    flex-shrink: 0; /* Evita que a imagem encolha */
+}
+
+.item-details {
+    flex-grow: 1; /* Permite que os detalhes ocupem o espaço disponível */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 15px;
+}
+
+.item-details h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.1em; /* Fonte um pouco menor */
+    color: #444;
+}
+
+.item-details .item-price {
+    margin: 0 0 10px 0;
+    font-size: 1em;
+    color: #666;
+    font-weight: 600;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-btn {
+    background-color:#4DB6AC; /* Verde claro */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 6px 10px; /* Botões menores */
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease;
+}
+
+.quantity-btn:hover {
+    background-color:#4DB6AC; /* Verde vibrante */
+}
+
+.quantity-input {
+    width: 40px; /* Input mais estreito */
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 0 8px;
+    padding: 6px 3px;
+    font-size: 0.9em;
+}
+
+.remove-item-btn {
+    background-color: #e74c3c; /* Vermelho */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px; /* Botão de remover menor */
+    cursor: pointer;
+    font-size: 0.8em; /* Fonte menor */
+    transition: background-color 0.2s ease;
+    flex-shrink: 0; /* Evita que o botão encolha */
+}
+
+.remove-item-btn:hover {
+    background-colo: red; /* Vermelho mais escuro */
+}
+
+/* Seção de Resumo do Carrinho */
+.cart-summary {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+    margin-top: 20px; /* Espaçamento do topo */
+}
+
+.cart-summary h2 {
+    color: #5a8d0f;
+    margin-top: 0;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 15px;
+    font-size: 1.8em;
+}
+
+.cart-summary p {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    color: #555;
+}
+
+.cart-summary .total {
+    font-weight: 600;
+    font-size: 1.3em;
+    color: #333;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+    margin-top: 20px;
+}
+
+.checkout-btn, .continue-shopping-btn {
+    display: block;
+    width: 100%;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    margin-top: 15px;
+}
+
+.checkout-btn {
+    background-color:#4DB6AC; /* Verde vibrante */
+    color: #fff;
+    font-weight: 600;
+}
+
+.checkout-btn:hover {
+    background-color:#4DB6AC; /* Verde mais escuro */
+    transform: translateY(-2px);
+}
+
+.continue-shopping-btn {
+    background-color: white ; /* Cinza claro */
+    color: #555;
+    border: 1px solid #ccc;
+}
+
+.continue-shopping-btn:hover {
+    background-color: green;
+    color:white;
+    transform: translateY(-2px);
+}
+
+.main-nav ul {
+    list-style: none; /* Remove os marcadores da lista */
+    display: flex; /* Coloca os itens do menu em linha */
+}
+
+.main-nav ul li {
+    margin-left: 25px; /* Espaçamento entre os itens do menu */
+}
+
+.main-nav ul li a {
+    color: #fff; /* Cor branca para os links do menu */
+    font-weight: bold;
+    padding: 5px 0; /* Espaçamento interno para a área de clique */
+    transition: color 0.3s ease; /* Transição suave na mudança de cor */
+}
+
+.main-nav ul li a:hover,
+.main-nav ul li a.active { /* Efeito ao passar o mouse ou na página ativa */
+    color: #FFDDC1; /* Cor de destaque (laranja claro) */
+    border-bottom: 2px solid #FFDDC1; /* Linha embaixo */
+}
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    background-color: #333;
+    color: white;
+    font-size: 0.9em;
+}
+
+

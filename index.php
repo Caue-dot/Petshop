@@ -1,5 +1,5 @@
 <?php
-  
+
 include_once("classes/Config_session.class.php");
 $session = new Config_Session();
 $session->init();
@@ -12,23 +12,26 @@ $main_view = new MainView();
 ?>
 
 <html lang="pt-br">
-<head>
-		<meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
-		<link rel="stylesheet" href="public/css/style.css"/>
-		<link rel="shortcut icon" type="imagex/png" href="logodopetshop.jpg">
-        <title>Inicio</title>
 
-    </head>
+<head>
+    <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="public/css/style.css" />
+    <link rel="shortcut icon" type="imagex/png" href="logodopetshop.jpg">
+    <title>Inicio</title>
+
+</head>
+
 <body>
 
-	<?php $main_view->header(); ?>
+    <?php $main_view->header(); ?>
     <main>
         <section class="hero">
             <h2>Seu Pet, Nossa Paixão!</h2>
-            <p>Os melhores cuidados e produtos para quem você mais ama.</p>           
-        </section>                          
+            <p>Os melhores cuidados e produtos para quem você mais ama.</p>
+        </section>
     </main>
-<header>
+    
+    <header>
         <h1>Bem-vindo ao Seu Pet Shop!</h1>
     </header>
 
@@ -98,13 +101,14 @@ $main_view = new MainView();
                     <span>Saúde</span>
                 </a>
             </div>
-        </section>  
+        </section>
     </main>
 
 
-<?php $main_view->footer(); ?>
+    <?php $main_view->footer(); ?>
 
- 
-    
+
+
 </body>
+
 </html>

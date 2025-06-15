@@ -66,16 +66,17 @@ class OrderContr extends Order
         $order_id = $order[0]["order_id"];
 
         $order_product = $this->get_product($product_id);
-        if ($order_product) {
+        if ($order_product!==false) {
 
             //Checa se já possui o item no carrinho caso já possua aumenta a quantidade
             $order_product_id = $order_product["product_id"];
-            $order_quantity = $order_product["quantity"];
+            $order_quantity = $order_product["order_quantity"];
 
-            if ($product_quantity <= $order_product["quantity"]) {
+            if ($product_quantity <= $order_product["order_quantity"]) {
                 header("Location: " . $redirect_error . "?error=no_quantity");
                 die();
             }
+
             parent::set_quantity($order_id, $order_product_id, $order_quantity + 1);
             parent::add_price_order($order_id, $price);
 
@@ -90,12 +91,33 @@ class OrderContr extends Order
         parent::set_product($order_id, $product_id, 1);
     }
 
+    public function remove_product($product_id){
+        $order = $this->get_orders("cart")[0];
+        $order_id = $order["order_id"];
+
+        $order_product = $this->get_product($product_id);
+        if(!$order){
+            //ERRO
+            echo('Um erro inesperado aconteceu :(');
+            die();
+
+        }
+
+
+    
+        $price = $order_product["price"] * $order_product["order_quantity"];
+
+        parent::remove_price_order($order_id, $price);
+        parent::remove_product_model($product_id, $order_id);
+
+    }
+
     public function purchase_order()
     {
         $order = $this->get_orders("cart");
         if (!$order) {
-            //ERRO
-            // die();
+            echo 'Não ha pedidos a serem comprados';
+            die();
         }
 
         $order_id = $order[0]["order_id"];
@@ -105,8 +127,5 @@ class OrderContr extends Order
     }
 
 
-    private function remove_quantity($order_id)
-    {
-        parent::remove_quantity_from_order($order_id);
-    }
+  
 }

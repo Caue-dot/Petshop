@@ -1,4 +1,15 @@
 <?php
+include_once("../classes/Config_session.class.php");
+
+
+$session = new Config_Session();
+$session->init();
+
+
+if (!isset($_SESSION["user_id"]) || $_SESSION["user_username"] != "admin") {
+    header("Location: ../index.php");
+    die();
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //Verifica se e a requisição é post e coloca os valores do formulario em variáveis
@@ -14,7 +25,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     include '../classes/Dbh.inc.php';
-    include '../classes/Config_session.class.php';
     include '../classes/products/Product.classes.php';
     include '../classes/products/ProductContr.classes.php';
 

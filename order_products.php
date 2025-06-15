@@ -24,7 +24,8 @@ if(isset($id)  && !isset($_SESSION["order_products"])){
 </head>
 <body>
     <?php
-        $view->list_products();
+        $view->list_products("order_products");
+        unset($_SESSION["order_products"]);
     ?>
 </body>
 </html>

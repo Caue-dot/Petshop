@@ -88,7 +88,7 @@ class Product extends Dbh
     }
 
     protected function search_product_model($search){
-        $query = "SELECT * FROM products WHERE MATCH(name, description) AGAINST(:search IN NATURAL LANGUAGE MODE);";
+        $query = "SELECT * FROM products WHERE MATCH(name) AGAINST(:search IN NATURAL LANGUAGE MODE);";
         $pdo = parent::connect();
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(":search", $search);

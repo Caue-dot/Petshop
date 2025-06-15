@@ -49,7 +49,7 @@ class Order extends Dbh{
     }
 
     protected function set_product($order_id, $product_id, $quantity){
-        $query = "INSERT INTO orders_products(order_id, product_id, quantity) VALUES (:order_id, :product_id, :quantity)";
+        $query = "INSERT INTO orders_products(order_id, product_id, order_quantity) VALUES (:order_id, :product_id, :quantity)";
         $pdo = parent::connect();
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(":order_id", $order_id);
@@ -62,7 +62,9 @@ class Order extends Dbh{
     }
 
     protected function get_product_model($order_id, $product_id){
-        $query = "SELECT * FROM orders_products WHERE order_id = :order_id AND product_id = :product_id;";
+        $query = "SELECT * FROM orders_products 
+        INNER JOIN products ON orders_products.product_id = products.id
+        WHERE order_id = :order_id AND product_id = :product_id;";
         $pdo = parent::connect();
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(":order_id", $order_id);
@@ -89,7 +91,7 @@ class Order extends Dbh{
     }
 
     protected function set_quantity($order_id, $product_id, $quantity){
-        $query = "UPDATE orders_products SET quantity = :quantity WHERE order_id = :order_id AND product_id = :product_id;";
+        $query = "UPDATE orders_products SET order_quantity = :quantity WHERE order_id = :order_id AND product_id = :product_id;";
         $pdo = parent::connect();
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(":order_id", $order_id);
@@ -101,8 +103,27 @@ class Order extends Dbh{
     }
 
 
+    public function remove_product_model($product_id, $order_id){
+        $query = "DELETE FROM orders_products WHERE order_id = :order_id AND product_id = :product_id";
+        $pdo = parent::connect();
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(":product_id", $product_id);
+        $stmt->bindParam(":order_id", $order_id);
+
+        $stmt->execute();
+    }
+
     protected function add_price_order($order_id, $price){
         $query = 'UPDATE orders SET price = price + :price WHERE order_id = :order_id ;';
+        $pdo = parent::connect();
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(":order_id", $order_id);
+        $stmt->bindParam(":price", $price);
+        $stmt->execute();
+    }
+
+     protected function remove_price_order($order_id, $price){
+        $query = 'UPDATE orders SET price = price - :price WHERE order_id = :order_id ;';
         $pdo = parent::connect();
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(":order_id", $order_id);
