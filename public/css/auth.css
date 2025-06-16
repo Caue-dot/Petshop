@@ -1,0 +1,214 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color:#FFB347;
+    color:#444444;
+    position: relative; 
+    min-height: 100vh;
+}
+
+
+main{
+    padding-bottom: 180px; /* espaço para o footer não sobrepor conteúdo */
+}
+header {
+    background-color:#4DB6AC; /* Verde vibrante */
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.container {
+    width:8ZX0; /* Largura do conteúdo principal */
+    max-width: 1200px; /* Largura máxima para não ficar muito largo em telas grandes */
+    margin: 0 auto; /* Centraliza o container */
+}
+a {
+    text-decoration: none; /* Remove o sublinhado dos links */
+    color: inherit; /* Faz com que os links herdem a cor do pai */
+}
+/* --- Estilos do Cabeçalho (Header) --- */
+.main-header {
+    background-color: #4DB6AC; /* Azul suave para o cabeçalho */
+    color:#FFFFFF; /* Texto branco */
+    padding: 20px 0; /* Espaçamento interno em cima/baixo */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra suave */
+}
+
+.main-header .container {
+    display: flex; /* Usa Flexbox para alinhar itens na mesma linha */
+    justify-content: space-between; /* Espaça o logo e a navegação */
+    align-items: center; /* Alinha verticalmente no centro */
+}
+
+.main-header .logo {
+    margin: 0; /* Remove margem padrão do h1 */
+    font-size: 2.2em; /* Tamanho do logo */
+}
+
+.main-header .logo a {
+    color: #fff; /* Cor branca para o link do logo */
+    font-weight: bold;
+}
+
+/* --- Estilos da Navegação (Menu) --- */
+.main-nav ul {
+    list-style: none; /* Remove os marcadores da lista */
+    display: flex; /* Coloca os itens do menu em linha */
+}
+
+.main-nav ul li {
+    margin-left: 25px; /* Espaçamento entre os itens do menu */
+}
+
+.main-nav ul li a {
+    color: #fff; /* Cor branca para os links do menu */
+    font-weight: bold;
+    padding: 5px 0; /* Espaçamento interno para a área de clique */
+    transition: color 0.3s ease; /* Transição suave na mudança de cor */
+}
+
+.main-nav ul li a:hover,
+.main-nav ul li a.active { /* Efeito ao passar o mouse ou na página ativa */
+    color: #FFDDC1; /* Cor de destaque (laranja claro) */
+    border-bottom: 2px solid #FFDDC1; /* Linha embaixo */
+}
+/* COMECO DO CODIGO */
+h1 {
+    text-align: center;
+    color: white;
+    margin: 0;
+}
+
+main {
+    flex-grow:n 1; /* Faz o main ocupar o espaço restante */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.auth-container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os formulários quebrem a linha em telas menores */
+    justify-content: center;
+    gap: 30px; /* Espaçamento entre os formulários */
+    max-width: 900px;
+    width: 100%;
+}
+
+.auth-form-section {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    flex: 1; /* Faz com que as seções ocupem espaço igualmente */
+    min-width: 300px; /* Garante um tamanho mínimo para o formulário */
+}
+
+.auth-form-section h2 {
+    text-align: center;
+    color:#4DB6AC;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+}
+
+.auth-form .form-group {
+    margin-bottom: 20px;
+}
+
+.auth-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.auth-form input[type="text"],
+.auth-form input[type="email"],
+.auth-form input[type="password"] {
+    width: calc(100% - 20px); /* Ajusta para padding */
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box; /* Garante que padding e border não aumentem o tamanho total */
+}
+
+.form-actions {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.auth-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.register-btn {
+    background-color:#4DB6AC; /* Verde para registrar */
+    color: white;
+}
+
+.register-btn:hover {
+    background-color: blue;
+    transform: translateY(-2px);
+}
+
+.login-btn {
+    background-color:#4DB6AC; /* Azul para login */
+    color: white;
+}
+
+.login-btn:hover {
+    background-color: blue;
+    transform: translateY(-2px);
+}
+
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #999;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin: 20px 0; /* Espaçamento ao redor do separador */
+    position: relative;
+    top: -15px; /* Ajusta a posição para ficar mais entre os cards */
+}
+
+.separator::before,
+.separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #ddd;
+}
+
+.separator:not(:empty)::before {
+    margin-right: .25em;
+}
+
+.separator:not(:empty)::after {
+    margin-left: .25em;
+}
+
+
+
+/* Rodapé */
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9em;
+}

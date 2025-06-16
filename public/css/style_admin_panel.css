@@ -1,0 +1,167 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color:#FFB347;
+    color:#444444;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color:#4DB6AC; /* Verde vibrante */
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.container {
+    width:8ZX0; /* Largura do conteúdo principal */
+    max-width: 1200px; /* Largura máxima para não ficar muito largo em telas grandes */
+    margin: 0 auto; /* Centraliza o container */
+}
+a {
+    text-decoration: none; /* Remove o sublinhado dos links */
+    color: inherit; /* Faz com que os links herdem a cor do pai */
+}
+/* --- Estilos do Cabeçalho (Header) --- */
+.main-header {
+    background-color: #4DB6AC; /* Azul suave para o cabeçalho */
+    color:#FFFFFF; /* Texto branco */
+    padding: 20px 0; /* Espaçamento interno em cima/baixo */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra suave */
+}
+
+.main-header .container {
+    display: flex; /* Usa Flexbox para alinhar itens na mesma linha */
+    justify-content: space-between; /* Espaça o logo e a navegação */
+    align-items: center; /* Alinha verticalmente no centro */
+}
+
+.main-header .logo {
+    margin: 0; /* Remove margem padrão do h1 */
+    font-size: 2.2em; /* Tamanho do logo */
+}
+
+.main-header .logo a {
+    color: #fff; /* Cor branca para o link do logo */
+    font-weight: bold;
+}
+
+/* --- Estilos da Navegação (Menu) --- */
+.main-nav ul {
+    list-style: none; /* Remove os marcadores da lista */
+    display: flex; /* Coloca os itens do menu em linha */
+}
+
+.main-nav ul li {
+    margin-left: 25px; /* Espaçamento entre os itens do menu */
+}
+
+.main-nav ul li a {
+    color: #fff; /* Cor branca para os links do menu */
+    font-weight: bold;
+    padding: 5px 0; /* Espaçamento interno para a área de clique */
+    transition: color 0.3s ease; /* Transição suave na mudança de cor */
+}
+
+.main-nav ul li a:hover,
+.main-nav ul li a.active { /* Efeito ao passar o mouse ou na página ativa */
+    color: #FFDDC1; /* Cor de destaque (laranja claro) */
+    border-bottom: 2px solid #FFDDC1; /* Linha embaixo */
+}
+/* COMECO DO CODIGO */
+h1 {
+    text-align: center;
+    margin: 0;
+}
+
+main {
+    padding: 20px;
+    max-width: 700px;
+    margin: 40px auto;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    text-align: center; /* Centraliza o conteúdo principal */
+}
+
+
+
+.admin-dashboard h2 {
+    color:#4DB6AC;
+    margin-bottom: 20px;
+}
+
+.admin-dashboard p {
+    font-size: 1.1em;
+    color: black;
+    margin-bottom: 30px;
+}
+
+.dashboard-actions {
+    display: flex;
+    flex-direction: column; /* Botões um abaixo do outro */
+    gap: 20px; /* Espaçamento entre os botões */
+    margin-top: 30px;
+}
+
+.dashboard-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    background-color:#4DB6AC; /* Azul padrão */
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1.2em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.dashboard-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.dashboard-btn span {
+    font-size: 0.8em;
+    font-weight: normal;
+    margin-top: 5px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Cores específicas para os botões */
+.dashboard-btn.view-products {
+    background-color:#4DB6AC; /* Verde */
+}
+
+.dashboard-btn.view-products:hover {
+    background-color: #218838;
+}
+
+.dashboard-btn.add-product {
+    background-color:#4DB6AC; /* Azul */
+}
+
+.dashboard-btn.add-product:hover {
+    background-color: #0056b3;
+}
+
+/* Rodapé */
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9em;
+}
+
+

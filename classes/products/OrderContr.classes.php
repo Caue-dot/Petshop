@@ -50,13 +50,13 @@ class OrderContr extends Order
         parent::set_order($this->user_id, $this->price);
     }
 
-    public function add_product($product, $redirect_error)
+    public function add_product($product,$quantity ,$redirect_error)
     {
         $order = $this->get_orders("cart");
         $product_quantity = $product["quantity"];
         $product_id = $product["id"];
         $price = $product["price"];
-
+        $total_price = $price * $quantity;
 
         if (!$order) {
             $this->create_order();
@@ -66,6 +66,13 @@ class OrderContr extends Order
         $order_id = $order[0]["order_id"];
 
         $order_product = $this->get_product($product_id);
+
+
+        if($product["quantity"] < $quantity){
+            //ERRO
+            echo 'Você está tentando adicionar mais do que tem no estoque!'; 
+            die();
+        }
         if ($order_product!==false) {
 
             //Checa se já possui o item no carrinho caso já possua aumenta a quantidade
@@ -76,19 +83,14 @@ class OrderContr extends Order
                 header("Location: " . $redirect_error . "?error=no_quantity");
                 die();
             }
-
-            parent::set_quantity($order_id, $order_product_id, $order_quantity + 1);
-            parent::add_price_order($order_id, $price);
+            parent::add_price_order($order_id, $total_price);
+            parent::set_quantity($order_id, $order_product_id, $order_quantity + $quantity);
 
             return;
         }
 
-
-
-
-        echo $order_product["quantity"];
-        parent::add_price_order($order_id, $price);
-        parent::set_product($order_id, $product_id, 1);
+        parent::add_price_order($order_id, $total_price);
+        parent::set_product($order_id, $product_id, $quantity);
     }
 
     public function remove_product($product_id){

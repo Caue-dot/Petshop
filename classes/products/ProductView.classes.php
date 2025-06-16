@@ -36,7 +36,6 @@ class ProductView
 
                 echo '<br> <br> <br>';
             }
-
         }
     }
 
@@ -48,7 +47,7 @@ class ProductView
         if (isset($_SESSION["products"]) && $_SESSION["products"]) {
             $products = $_SESSION["products"];
 
-            
+
             foreach ($products as $product) {
 
                 //Higieniza os inputs, para evitar cross-site-injection
@@ -56,7 +55,7 @@ class ProductView
                 $name = htmlspecialchars($product["name"]);
                 $description = htmlspecialchars($product["description"]);
                 $price = filter_var($product["price"], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-                $price_installment = round($price/3,2);
+                $price_installment = round($price / 3, 2);
                 $quantity = filter_var($product["quantity"], FILTER_SANITIZE_NUMBER_INT);
                 $img = filter_var($product["image"], FILTER_SANITIZE_URL);
                 echo "
@@ -103,7 +102,7 @@ class ProductView
             $description = htmlspecialchars($product["description"]);
             $price = filter_var($product["price"], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
             $quantity = filter_var($product["quantity"], FILTER_SANITIZE_NUMBER_INT);
-            $img = filter_var($product["image"], FILTER_SANITIZE_URL) ;
+            $img = filter_var($product["image"], FILTER_SANITIZE_URL);
             echo "<main>
                     <section class='product-detail-section'>
                         <div class='product-image-container'>
@@ -125,27 +124,35 @@ class ProductView
                                 Estoque: <span>$quantity unidades disponíveis</span>
                             </div>
                             
-                            <div class='add-to-cart-section'>
-                                <label for='quantity'>Quantidade:</label>
-                                <input type='number' id='quantity' name='quantity' value='1' min='1' max='50'>
-                                <br>
-                                <br>
-                            </div>
-                            <br><br><br><br>
+                           
+                            <br><br>
                         ";
-                if($quantity <= 0){
-                    echo "<br><p><b>Desculpe, esse produto acabou!</b></p>";
-                }else if(!$admin){
-                    echo "<a href=includes/order.inc.php?cart=$product_id> <button class='add-to-cart-btn'>Adicionar ao Carrinho</button> </a>";
-                }
-                            
+            if ($quantity <= 0) {
+                echo "<br><p><b>Desculpe, esse produto acabou!</b></p>";
+            } else {
+                echo "
+                    <form action='includes/order.inc.php?cart=$product_id' method='POST'> 
+                    
+                    
+                
+                    <div class='add-to-cart-section'>
+                                <label for='quantity'>Quantidade:</label>
+                                <input type='number' id='quantity' name='quantity' value='1' min='1' max='$quantity'>
+                                <br>
+                                <br>
+                            </div> <br> <br>";
+                echo "<button class='add-to-cart-btn'>Adicionar ao Carrinho</button>
+                    
+                    </form>";
+            }
+            if (isset($_GET['added_cart'])) {
+                echo 'Adicionado com successo no carrinho!';
+            }
 
-                        echo "
-                        </div>
-                    </section>
-                </main>";
 
-            echo '<br> <br> <br>';
+
+
+            echo '<br>';
         }
     }
 
@@ -169,6 +176,10 @@ class ProductView
                 break;
             case "not_found":
                 echo "Produto não encontrado";
+                die();
+                break;
+            case "no_quantity":
+                echo "Quantidade no carrinho atingiu o limite do estoque!";
                 die();
                 break;
         }
@@ -217,6 +228,4 @@ class ProductView
 
         echo '</form> ';
     }
-
-   
 }

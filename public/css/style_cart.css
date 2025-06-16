@@ -1,10 +1,12 @@
-body{ 
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color:#FFB347;
     color:#444444;
-    background-color:#FFB347
+    position: relative; 
+    min-height: 100vh;
 }
-
 
 
 .container {

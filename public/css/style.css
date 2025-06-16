@@ -4,12 +4,14 @@ body {
     padding: 0;
     background-color:#FFB347;
     color:#444444;
+    position: relative; 
     min-height: 100vh;
 }
 .container {
     width:8ZX0; /* Largura do conteúdo principal */
     max-width: 1200px; /* Largura máxima para não ficar muito largo em telas grandes */
     margin: 0 auto; /* Centraliza o container */
+  
 }
 a {
     text-decoration: none; /* Remove o sublinhado dos links */
@@ -27,6 +29,7 @@ a {
     display: flex; /* Usa Flexbox para alinhar itens na mesma linha */
     justify-content: space-between; /* Espaça o logo e a navegação */
     align-items: center; /* Alinha verticalmente no centro */
+    
 }
 
 .main-header .logo {
@@ -87,6 +90,7 @@ a {
     max-width: 1200px;
     margin: 20px auto;
     padding: 0 15px;
+    padding-bottom: 180px; /* espaço para o footer não sobrepor conteúdo */
 }
 
 /* Grade de produtos */
@@ -208,6 +212,7 @@ h1 {
     max-width: 1200px;
     margin: 30px auto;
     padding: 0 15px;
+    padding-bottom: 180px; /* espaço para o footer não sobrepor conteúdo */
 }
 
 /* Seção de Seleção de Pet (Cachorros / Gatos) */
@@ -373,7 +378,7 @@ textarea {
 
 button {
     background-color:#4DB6AC; /* Cor de fundo azul */
-    color: black;
+    color: white;
     padding: 12px 20px;
     border: none;
     border-radius: 4px;
@@ -385,14 +390,18 @@ button {
 
 button:hover {
     background-color:#FFF5E1; /* Cor mais escura ao passar o mouse */
+    color: black;
 }
 
 footer {
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
+    position: absolute;
+    bottom: -30;
+    left: 0;
+    width: 100%;
     background-color: #333;
     color: white;
+    text-align: center;
+    padding: 20px;
     font-size: 0.9em;
 }
 

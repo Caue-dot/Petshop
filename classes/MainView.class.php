@@ -17,7 +17,7 @@ class MainView{
                             <li><a href="informacao.html">Informacao</a></li>
                 ';
                 $login_view->login_info();            
-         echo '              </ul>
+         echo '         </ul>
                     </nav>
                 </div>
             </header>';

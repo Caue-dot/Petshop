@@ -1,106 +1,128 @@
+/* Ajustes base */
+html,
 body {
-    font-family: 'Poppins', sans-serif;
+    height: 100%;
     margin: 0;
     padding: 0;
-    background-color:#FFB347;
-    color:#444444;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
 }
 
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #FFB347;
+    color: #444444;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estrutura flexbox do layout principal */
+.layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
 header {
-    background-color: #5cb85c; /* Um verde mais vibrante */
+    background-color: #5cb85c;
     color: white;
     padding: 20px 0;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
 .container {
-    width:8ZX0; /* Largura do conteúdo principal */
-    max-width: 1200px; /* Largura máxima para não ficar muito largo em telas grandes */
-    margin: 0 auto; /* Centraliza o container */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
+
 a {
-    text-decoration: none; /* Remove o sublinhado dos links */
-    color: inherit; /* Faz com que os links herdem a cor do pai */
+    text-decoration: none;
+    color: inherit;
 }
-/* --- Estilos do Cabeçalho (Header) --- */
+
+/* Cabeçalho principal */
 .main-header {
-    background-color: #4DB6AC; /* Azul suave para o cabeçalho */
-    color:#FFFFFF; /* Texto branco */
-    padding: 20px 0; /* Espaçamento interno em cima/baixo */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra suave */
+    background-color: #4DB6AC;
+    color: #FFFFFF;
+    padding: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .main-header .container {
-    display: flex; /* Usa Flexbox para alinhar itens na mesma linha */
-    justify-content: space-between; /* Espaça o logo e a navegação */
-    align-items: center; /* Alinha verticalmente no centro */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .main-header .logo {
-    margin: 0; /* Remove margem padrão do h1 */
-    font-size: 2.2em; /* Tamanho do logo */
+    margin: 0;
+    font-size: 2.2em;
 }
 
 .main-header .logo a {
-    color: #fff; /* Cor branca para o link do logo */
+    color: #fff;
     font-weight: bold;
 }
 
-/* --- Estilos da Navegação (Menu) --- */
+/* Navegação */
 .main-nav ul {
-    list-style: none; /* Remove os marcadores da lista */
-    display: flex; /* Coloca os itens do menu em linha */
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
 }
 
 .main-nav ul li {
-    margin-left: 25px; /* Espaçamento entre os itens do menu */
+    margin-left: 25px;
 }
 
 .main-nav ul li a {
-    color: #fff; /* Cor branca para os links do menu */
+    color: #fff;
     font-weight: bold;
-    padding: 5px 0; /* Espaçamento interno para a área de clique */
-    transition: color 0.3s ease; /* Transição suave na mudança de cor */
+    padding: 5px 0;
+    transition: color 0.3s ease;
 }
 
 .main-nav ul li a:hover,
-.main-nav ul li a.active { /* Efeito ao passar o mouse ou na página ativa */
-    color: #FFDDC1; /* Cor de destaque (laranja claro) */
-    border-bottom: 2px solid #FFDDC1; /* Linha embaixo */
+.main-nav ul li a.active {
+    color: #FFDDC1;
+    border-bottom: 2px solid #FFDDC1;
 }
-/* COMECO DO CODIGO */
+
+/* Título principal */
 h1 {
     color: white;
     text-align: center;
     margin: 0;
 }
 
+/* Conteúdo principal (flex 1) */
 main {
-    flex-grow: 1;
+    flex: 1;
     display: flex;
     justify-content: center;
     padding: 20px;
 }
 
+/* Detalhes do produto */
 .product-detail-section {
     background-color: white;
     padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    max-width: 900px; /* Largura máxima para o conteúdo do produto */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
     width: 100%;
-    display: flex; /* Usa flexbox para imagem e info lado a lado */
-    flex-wrap: wrap; /* Permite quebrar linha em telas menores */
-    gap: 30px; /* Espaçamento entre os blocos */
-    align-items: flex-start; /* Alinha o topo dos itens flex */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: flex-start;
 }
 
 .product-image-container {
-    flex: 1; /* Ocupa espaço flexível */
-    min-width: 300px; /* Tamanho mínimo para a imagem */
+    flex: 1;
+    min-width: 300px;
     text-align: center;
 }
 
@@ -109,16 +131,16 @@ main {
     height: auto;
     border-radius: 8px;
     border: 1px solid #eee;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .product-info-container {
-    flex: 2; /* Ocupa mais espaço que a imagem */
-    min-width: 300px; /* Tamanho mínimo para as informações */
+    flex: 2;
+    min-width: 300px;
 }
 
 .product-name {
-    color:#4DB6AC;
+    color: #4DB6AC;
     margin-top: 0;
     margin-bottom: 15px;
     font-size: 2em;
@@ -135,12 +157,12 @@ main {
 .product-price {
     font-size: 1.8em;
     font-weight: bold;
-    color: red; /* Cor vibrante para o preço */
+    color: red;
     margin-bottom: 15px;
 }
 
 .product-price span {
-    font-size: 1.2em; /* Deixa o valor do preço um pouco maior */
+    font-size: 1.2em;
 }
 
 .product-stock {
@@ -181,8 +203,8 @@ main {
 }
 
 .add-to-cart-btn {
-    padding:  12px 25px;
-    background-color:#4DB6AC; /* Azul para o botão de adicionar */
+    padding: 12px 25px;
+    background-color: #4DB6AC;
     color: white;
     border: none;
     border-radius: 5px;
@@ -191,19 +213,20 @@ main {
     cursor: pointer;
     text-align: center;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .add-to-cart-btn:hover {
     background-color: blue;
     transform: translateY(-2px);
 }
-/* Rodapé */
+
+/* Rodapé fixado com flexbox */
 footer {
     background-color: #333;
     color: #fff;
     text-align: center;
     padding: 20px 0;
-    margin-top: 30px;
     font-size: 0.9em;
+    margin-top: auto;
 }

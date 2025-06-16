@@ -19,9 +19,6 @@ if(!isset($_GET["error"])){
         //Evitando que a pessoa acesse um link invalido
         header("Location: product.php?error=not_found");
     }
-}else{
-    echo "a";
-    die();
 }
 ?>
 
@@ -36,10 +33,16 @@ if(!isset($_GET["error"])){
     
     <?php
     $main_view->header();
+    echo '<br><br><br>';
     $view->show_product(false);
     //unset($_SESSION["product"]);
-    
     $view->check_errors();
+    ?>
+
+      </div>
+                    </section>
+                </main>";
+    <?php
     $main_view->footer();
     ?>
 </body>
