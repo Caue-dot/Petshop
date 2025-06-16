@@ -1,0 +1,209 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color:#FFB347;
+    color:#444444;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #5cb85c; /* Um verde mais vibrante */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.container {
+    width:8ZX0; /* Largura do conteúdo principal */
+    max-width: 1200px; /* Largura máxima para não ficar muito largo em telas grandes */
+    margin: 0 auto; /* Centraliza o container */
+}
+a {
+    text-decoration: none; /* Remove o sublinhado dos links */
+    color: inherit; /* Faz com que os links herdem a cor do pai */
+}
+/* --- Estilos do Cabeçalho (Header) --- */
+.main-header {
+    background-color: #4DB6AC; /* Azul suave para o cabeçalho */
+    color:#FFFFFF; /* Texto branco */
+    padding: 20px 0; /* Espaçamento interno em cima/baixo */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra suave */
+}
+
+.main-header .container {
+    display: flex; /* Usa Flexbox para alinhar itens na mesma linha */
+    justify-content: space-between; /* Espaça o logo e a navegação */
+    align-items: center; /* Alinha verticalmente no centro */
+}
+
+.main-header .logo {
+    margin: 0; /* Remove margem padrão do h1 */
+    font-size: 2.2em; /* Tamanho do logo */
+}
+
+.main-header .logo a {
+    color: #fff; /* Cor branca para o link do logo */
+    font-weight: bold;
+}
+
+/* --- Estilos da Navegação (Menu) --- */
+.main-nav ul {
+    list-style: none; /* Remove os marcadores da lista */
+    display: flex; /* Coloca os itens do menu em linha */
+}
+
+.main-nav ul li {
+    margin-left: 25px; /* Espaçamento entre os itens do menu */
+}
+
+.main-nav ul li a {
+    color: #fff; /* Cor branca para os links do menu */
+    font-weight: bold;
+    padding: 5px 0; /* Espaçamento interno para a área de clique */
+    transition: color 0.3s ease; /* Transição suave na mudança de cor */
+}
+
+.main-nav ul li a:hover,
+.main-nav ul li a.active { /* Efeito ao passar o mouse ou na página ativa */
+    color: #FFDDC1; /* Cor de destaque (laranja claro) */
+    border-bottom: 2px solid #FFDDC1; /* Linha embaixo */
+}
+/* COMECO DO CODIGO */
+h1 {
+    color: white;
+    text-align: center;
+    margin: 0;
+}
+
+main {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.product-detail-section {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    max-width: 900px; /* Largura máxima para o conteúdo do produto */
+    width: 100%;
+    display: flex; /* Usa flexbox para imagem e info lado a lado */
+    flex-wrap: wrap; /* Permite quebrar linha em telas menores */
+    gap: 30px; /* Espaçamento entre os blocos */
+    align-items: flex-start; /* Alinha o topo dos itens flex */
+}
+
+.product-image-container {
+    flex: 1; /* Ocupa espaço flexível */
+    min-width: 300px; /* Tamanho mínimo para a imagem */
+    text-align: center;
+}
+
+.product-image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.product-info-container {
+    flex: 2; /* Ocupa mais espaço que a imagem */
+    min-width: 300px; /* Tamanho mínimo para as informações */
+}
+
+.product-name {
+    color:#4DB6AC;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 2em;
+    line-height: 1.2;
+}
+
+.product-description {
+    font-size: 1.1em;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.product-price {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: red; /* Cor vibrante para o preço */
+    margin-bottom: 15px;
+}
+
+.product-price span {
+    font-size: 1.2em; /* Deixa o valor do preço um pouco maior */
+}
+
+.product-stock {
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 25px;
+    padding-top: 5px;
+    border-top: 1px dashed #eee;
+}
+
+.product-stock span {
+    font-weight: bold;
+    color: #333;
+}
+
+.add-to-cart-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.add-to-cart-section label {
+    font-weight: bold;
+    color: #555;
+    font-size: 1.1em;
+}
+
+.add-to-cart-section input[type="number"] {
+    width: 80px;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    text-align: center;
+}
+
+.add-to-cart-btn {
+    padding:  12px 25px;
+    background-color:#4DB6AC; /* Azul para o botão de adicionar */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.add-to-cart-btn:hover {
+    background-color: blue;
+    transform: translateY(-2px);
+}
+/* Rodapé */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 30px;
+    font-size: 0.9em;
+}

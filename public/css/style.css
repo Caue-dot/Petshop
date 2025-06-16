@@ -1,7 +1,10 @@
-body{ font-family: Arial, sans-serif;
-    line-height: 1.6;
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color:#FFB347;
     color:#444444;
-    background-color:#FFB347
+    min-height: 100vh;
 }
 .container {
     width:8ZX0; /* Largura do conteúdo principal */
@@ -81,22 +84,17 @@ a {
     text-align: center;
 }
 .product-grid-container {
-    display: flex;
-    max-width: 1200px; /* Largura máxima do conteúdo */
-    margin: 20px auto; /* Centraliza a grade na página */
-    padding: 0 15px; /* Espaçamento lateral */
-    flex-direction: column;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 15px;
 }
 
-/* Estilos da Grade de Produtos */
+/* Grade de produtos */
 .product-grid {
     display: grid;
-    /* Ajusta automaticamente o número de colunas, de 1 a 4. */
-    /* `minmax(280px, 1fr)` significa que cada coluna terá no mínimo 280px e o restante do espaço será distribuído igualmente. */
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px; /* Espaçamento entre os cards */
-    justify-content: center; /* Centraliza os cards se não preencherem todas as colunas */
-    place-items:center;  /* Modifiquei para centralizar os cards na pagina */
+    gap: 25px;
+    justify-items: center;
 }
 
 /* Estilos do Card de Produto Individual */
@@ -107,8 +105,6 @@ a {
     overflow: hidden; /* Garante que a imagem não vaze */
     text-align: center;
     padding-bottom: 15px; /* Espaço na parte inferior do card */
-    display: flex; /* Para flexbox interno do card */
-    flex-direction: column; /* Organiza os itens verticalmente */
     transition: transform 0.2s ease-in-out; /* Efeito suave ao passar o mouse */
     width: 260px; /* Adicionei uma largura fixa */
     height: 450px; /* Adicionei uma altura fixa */

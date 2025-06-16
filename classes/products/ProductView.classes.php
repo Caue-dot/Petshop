@@ -103,30 +103,53 @@ class ProductView
             $description = htmlspecialchars($product["description"]);
             $price = filter_var($product["price"], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
             $quantity = filter_var($product["quantity"], FILTER_SANITIZE_NUMBER_INT);
+            $img = filter_var($product["image"], FILTER_SANITIZE_URL) ;
+            echo "<main>
+                    <section class='product-detail-section'>
+                        <div class='product-image-container'>
+                            <img src='$img' alt='Imagem da Ração Seca para Cães Adultos'>
+                        </div>
+                        
+                        <div class='product-info-container'>
+                            <h2 class='product-name'>$name</h2>
+                            
+                            <p class='product-description'>
+                                $description
+                            </p>
+                            
+                            <div class='product-price'>
+                                Preço: <span>R$ $price</span>
+                            </div>
+                            
+                            <div class='product-stock'>
+                                Estoque: <span>$quantity unidades disponíveis</span>
+                            </div>
+                            
+                            <div class='add-to-cart-section'>
+                                <label for='quantity'>Quantidade:</label>
+                                <input type='number' id='quantity' name='quantity' value='1' min='1' max='50'>
+                                <br>
+                                <br>
+                            </div>
+                            <br><br><br><br>
+                        ";
+                if($quantity <= 0){
+                    echo "<br><p><b>Desculpe, esse produto acabou!</b></p>";
+                }else if(!$admin){
+                    echo "<a href=includes/order.inc.php?cart=$product_id> <button class='add-to-cart-btn'>Adicionar ao Carrinho</button> </a>";
+                }
+                            
 
-            echo $name . " " . "R$" . $price;
-            echo '<br>';
-            echo '<img src=' . filter_var($product["image"], FILTER_SANITIZE_URL) . '>';
-            echo '<br>';
-            echo $description;
-            echo '<br>';
-            if($admin){
-                echo 'Estoque: <b> ' . $quantity . '</b>';
-            }
-           
+                        echo "
+                        </div>
+                    </section>
+                </main>";
 
-            if($quantity <= 0){
-                echo "<br>Desculpe, os produtos acabaram";
-                echo '<br> <br> <br>';
-                return;
-            }
-
-            if(!$admin){
-                echo "<br><a href=includes/order.inc.php?cart=$product_id> <button> Adicionar ao carrinho </button> </a>";
-            }
             echo '<br> <br> <br>';
         }
     }
+
+
     public function check_errors()
     {
 

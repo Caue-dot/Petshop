@@ -8,6 +8,8 @@ $session->init();
 
 $view = new ProductView();
 
+include("classes/MainView.class.php");
+$main_view = new MainView();
 
 if(!isset($_GET["error"])){
     if(isset($_GET["id"]) && !isset($_SESSION["product"]) || $_SESSION["product"]["id"] != $_GET["id"] ){
@@ -27,16 +29,18 @@ if(!isset($_GET["error"])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="public/css/style_product.css">
     <title>Document</title>
 </head>
 <body>
     
     <?php
+    $main_view->header();
     $view->show_product(false);
     //unset($_SESSION["product"]);
     
     $view->check_errors();
-    
+    $main_view->footer();
     ?>
 </body>
 </html>
