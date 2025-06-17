@@ -17,6 +17,9 @@ $main_view = new MainView();
     <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="public/css/style.css" />
     <link rel="shortcut icon" type="imagex/png" href="logodopetshop.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <title>Inicio</title>
 
 </head>

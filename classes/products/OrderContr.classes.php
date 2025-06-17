@@ -43,8 +43,7 @@ class OrderContr extends Order
         return parent::get_order_by_id_model($order_id);
     }
 
-
-
+  
     private function create_order()
     {
         parent::set_order($this->user_id, $this->price);
@@ -62,7 +61,10 @@ class OrderContr extends Order
             $this->create_order();
             $order = $this->get_orders("cart");
         }
-
+        if(count($order) > 1){
+            echo "erro fatal";
+            die();
+        }
         $order_id = $order[0]["order_id"];
 
         $order_product = $this->get_product($product_id);
@@ -105,17 +107,24 @@ class OrderContr extends Order
 
         }
 
-
     
+        
         $price = $order_product["price"] * $order_product["order_quantity"];
 
         parent::remove_price_order($order_id, $price);
         parent::remove_product_model($product_id, $order_id);
 
+        if($this->get_products($order_id) == false){
+            //Sem produtos no carrinho!
+            $this->delete_order($order_id);
+            
+
+        }
+
+
     }
 
-    public function purchase_order()
-    {
+    public function purchase_order($redirect_error){
         $order = $this->get_orders("cart");
         if (!$order) {
             echo 'Não ha pedidos a serem comprados';
@@ -123,10 +132,37 @@ class OrderContr extends Order
         }
 
         $order_id = $order[0]["order_id"];
-        $this->get_products($order_id);
+        $products = $this->get_products($order_id);
+        foreach ($products as $product){
+            $quantity = $product["quantity"];
+            $order_quantity = $product["order_quantity"];
+            $product_name= $product["name"];
 
+    
+            if($quantity < $order_quantity){
+                header("location: $redirect_error?error=no_stock&product=$product_name");
+                die();
+            }
+        }
+        
+        parent::remove_products_stock_model($order_id);
         parent::set_order_status($order_id, "purchased");
+        unset($_SESSION["products"]);
+        unset($_SESSION["product"]);
+        unset($_SESSION["order"]);
     }
+
+    protected function delete_order($order_id){
+        if($this->get_order_by_id($order_id)){
+            //Order existe
+            parent::delete_order($order_id);
+            unset($_SESSION["orders"]);
+            unset($_SESSION["products_cart"]);
+        }
+    }
+
+  
+  
 
 
   

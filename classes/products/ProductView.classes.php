@@ -15,25 +15,32 @@ class ProductView
 
                 //Higieniza os inputs, para evitar cross-site-injection
                 $name = htmlspecialchars($product["name"]);
+                $product_id = $product["id"];
                 $description = htmlspecialchars($product["description"]);
                 $price = filter_var($product["price"], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
                 $quantity = filter_var($product["quantity"], FILTER_SANITIZE_NUMBER_INT);
                 $tag = htmlspecialchars($product["tag"]);
+                $img = filter_var($product["image"], FILTER_SANITIZE_URL);
 
-                echo $name . " " . "R$" . $price;
-                echo '<br>';
-                echo '<img width=300 src=' . filter_var($product["image"], FILTER_SANITIZE_URL) . '>';
-                echo '<br>';
-                echo $product["description"];
-                echo '<br>';
-                echo 'Estoque: <b> ' . $quantity . '</b>';
-                echo '<br>';
-                echo "Tags:<b>$tag</b>";
-                echo '<br>';
-                echo '<a href="includes/prod_edit.inc.php?id=' . $product["id"] . '" ><button> Editar Produto </button> </a>';
-                echo '<br>';
-                echo '<a href="includes/prod_list_admin.inc.php?delete=' . $product["id"] . '" ><button> Deletar Produto </button> </a>';
 
+                echo " <div class='product-card'>
+                        <img src='$img' alt='$name'>
+                        <div class='product-info'>
+                            <h3>$name</h3>
+                            <p class='description'>$description</p>
+                            <p class='price'>R$ $price</p>
+                            <p class='stock'>Quantidade em estoque: <b>$quantity Unidades</b></p>
+                            <p class='stock'>Tags: $tag</p>
+                        </div>
+                        <div class='product-actions'>
+                            <a href=includes/prod_edit.inc.php?id=$product_id> <button class='edit-btn'>Editar</button> </a>
+                            <a href=includes/prod_list_admin.inc.php?delete=$product_id> <button class='delete-btn'>Deletar</button> </a>
+                        </div>
+                    </div>
+                    ";
+
+
+            
                 echo '<br> <br> <br>';
             }
         }
@@ -85,11 +92,42 @@ class ProductView
             ";
             }
             //unset($_SESSION["products"]);
+            unset($_SESSION["product"]);
         }
     }
 
 
-    public function show_product($admin)
+    public function show_product_admin()
+    {
+        //Mostra um produto especifico
+        if (isset($_SESSION["product"]) && $_SESSION["product"]) {
+
+
+            //Higieniza os inputs, para evitar cross-site-injection
+            $product = $_SESSION["product"];
+            $name = htmlspecialchars($product["name"]);
+            $description = htmlspecialchars($product["description"]);
+            $price = filter_var($product["price"], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+            $quantity = filter_var($product["quantity"], FILTER_SANITIZE_NUMBER_INT);
+            $img = filter_var($product["image"], FILTER_SANITIZE_URL);
+
+            echo "<section class='product-details'>
+                <h2>Informações Atuais do Produto</h2>
+                <div class='product-info-card'>
+                    <img src='$img' alt='Imagem da Ração Seca para Cães Adultos'>
+                    <div class='info-content'>
+                        <h3>Nome: $name</h3>
+                        <p><strong>Descrição:</strong>$description</p>
+                        <p><strong>Preço:</strong> R$ $price</p>
+                        <p><strong>Estoque:</strong> $quantity Unidades</p>
+                    </div>
+                </div>
+            </section>";
+        }
+    }
+
+
+    public function show_product()
     {
         //Mostra um produto especifico
         if (isset($_SESSION["product"]) && $_SESSION["product"]) {
@@ -153,7 +191,10 @@ class ProductView
 
 
             echo '<br>';
+
+           
         }
+        unset($_SESSION["product"]);
     }
 
 
@@ -201,31 +242,49 @@ class ProductView
         $quantity = filter_var($product["quantity"], FILTER_SANITIZE_NUMBER_INT);
         $tag = htmlspecialchars($product["tag"]);
 
-        echo '<form id="edit" action="includes/prod_edit.inc.php" method="post" enctype="multipart/form-data">';
-        //Preenche os inputs com os valores do produto editado
-        echo "
-            <h3>Nome: </h3>
-            <input type='text' name='name' value='$name'>
-            <br>
-            <h3>Descrição: </h3>
-            <textarea form='edit' name='description'>$description</textarea>
-            <br>
-            <h3>Preço: </h3>
-            <input type='number' name='price' value=$price >
-            <br>
-            <h3>Quantidade do estoque</h3>
-            <input type='number' name='quantity' value='$quantity'>
-            <br>
-            <h3>Tags</h3>
-            <input type='text' name='animal' value='$tag'>
-            <br>
-            <h3>Selecione uma imagem:</h3> 
-            <input type='file' name='img'>
-        
-        
-        <br><br>
-        <input type='submit' value = 'Editar' name='submit'>";
 
-        echo '</form> ';
+
+        echo " <section class='edit-form-section'>
+        <h2>Formulário de Edição</h2>
+        <form class='edit-form' action='includes/prod_edit.inc.php' method='POST'>
+            <div class='form-group'>
+                <label for='product-name'>Nome do Produto:</label>
+                <input type='text' id='product-name' name='name' value='$name' required>
+            </div>
+
+            <div class='form-group'>
+                <label for='product-description'>Descrição:</label>
+                <textarea id='product-description' name='description' rows='5' required>$description</textarea>
+            </div>
+
+            <div class='form-group'>
+                <label for='product-price'>Preço (R$):</label>
+                <input type='number' id='product-price' name='price' step='0.01' value=$price required>
+            </div>
+
+            <div class='form-group'>
+                <label for='product-stock'>Quantidade em Estoque:</label>
+                <input type='number' id='product-stock' name='quantity' value='$quantity' required>
+            </div>
+
+            <div class='form-group'>
+                <label for='product-stock'>Tags:</label>
+                <input type='text' id='product-stock' name='tag' value='$tag'>
+            </div>
+
+            <div class='form-group'>
+                <label for='product-image'>Arquivo da Imagem:</label>
+                <input type='file' id='product-image' name='productImage' accept='image/*'>
+                <p class='image-note'>Deixe em branco para manter a imagem atual.</p>
+            </div>
+
+            <div class='form-actions'>
+                <button type='submit' class='save-btn'>Salvar Alterações</button>
+                <button type='button' class='cancel-btn' onclick='window.history.back();'>Cancelar</button>
+            </div>
+        </form>
+    </section>";
+
+        
     }
 }

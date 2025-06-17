@@ -9,7 +9,7 @@ $view =  new UserView();
 include("classes/MainView.class.php");
 $main_view = new MainView();
 
-if(isset($_SESSION["user_id"])){
+if (isset($_SESSION["user_id"])) {
     header("location: index.php");
 }
 ?>
@@ -17,6 +17,7 @@ if(isset($_SESSION["user_id"])){
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,68 +26,78 @@ if(isset($_SESSION["user_id"])){
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    
+
 </head>
+
 <body>
     <?php $main_view->header() ?>
     <br><br><br>
     <h1>Identificação</h1>
-    <main>
-        <div class="auth-container">
-            <section class="auth-form-section register-section">
-                <h2>Cadastre-se</h2>
-                <form action="includes/signup.inc.php" method="POST">
-                    <div class="form-group">
-                        <label for="register-username">Nome de Usuário:</label>
-                        <input type="text" id="register-username" name="username" required>
-                    </div>
+    <div class="container-test">
 
-                    <div class="form-group">
-                        <label for="register-email">Email:</label>
-                        <input type="email" id="register-email" name="email" required>
-                    </div>
+        <main>
+            <div class="auth-container">
+                <section class="auth-form-section register-section">
+                    <h2>Cadastre-se</h2>
+                    <form action="includes/signup.inc.php" method="POST">
+                        <div class="form-group">
+                            <label for="register-username">Nome de Usuário:</label>
+                            <br>
+                            <input type="text" id="register-username" name="username" required>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="register-password">Senha:</label>
-                        <input type="password" id="register-password" name="pwd" required>
-                    </div>
-                    <br>
-                     <?php
-                     $view->check_errors_signup();
-                     ?>
-                    <div class="form-actions">
-                        <button type="submit" class="auth-btn register-btn">Cadastre-se</button>
-                    </div>
-                </form>
-            </section>
+                        <div class="form-group">
+                            <label for="register-email">Email:</label>
+                            <br>
+                            <input type="email" id="register-email" name="email" required>
+                        </div>
 
-            <div class="separator">OU</div>
+                        <div class="form-group">
+                            <label for="register-password">Senha:</label>
+                            <br>
+                            <input type="password" id="register-password" name="pwd" required>
+                        </div>
+                        <br>
+                        <?php
+                        $view->check_errors_signup();
+                        ?>
+                        <div class="form-actions">
+                            <button type="submit" class="auth-btn register-btn">Cadastre-se</button>
+                        </div>
+                    </form>
+                </section>
 
-            <section class="auth-form-section login-section">
-                <h2>Login</h2>
-               <form action="includes/login.inc.php" method="POST">
-                    <div class="form-group">
-                        <label for="login-username">Nome de Usuário:</label>
-                        <input type="text" id="login-username" name="username" required>
-                    </div>
+                <div class="separator">OU</div>
 
-                    <div class="form-group">
-                        <label for="login-password">Senha:</label>
-                        <input type="password" id="login-password" name="pwd" required>
-                    </div>
-                 <br>
-                <?php
-                $view->check_errors_login();
+                <section class="auth-form-section login-section">
+                    <h2>Login</h2>
+                    <form action="includes/login.inc.php" method="POST">
+                        <div class="form-group">
+                            <label for="login-username">Nome de Usuário:</label>
+                            <br>
+                            <input type="text" id="login-username" name="username" required>
+                        </div>
 
-                ?>
-                    <div class="form-actions">
-                        <button type="submit" class="auth-btn login-btn">Entrar</button>
-                    </div>
-                </form>
+                        <div class="form-group">
+                            <label for="login-password">Senha:</label>
+                            <br>
+                            <input type="password" id="login-password" name="pwd" required>
+                        </div>
+                        <br>
+                        <?php
+                        $view->check_errors_login();
 
-            </section>
-        </div>
-    </main>
+                        ?>
+                        <div class="form-actions">
+                            <button type="submit" class="auth-btn login-btn">Entrar</button>
+                        </div>
+                    </form>
+
+                </section>
+            </div>
+        </main>
+    </div>
     <?php $main_view->footer() ?>
 </body>
+
 </html>

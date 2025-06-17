@@ -4,7 +4,8 @@ body {
     padding: 0;
     background-color:#FFB347;
     color:#444444;
-    position: relative; 
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
 }
 
@@ -82,7 +83,7 @@ h1 {
 }
 
 main {
-    flex-grow:n 1; /* Faz o main ocupar o espaço restante */
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -124,7 +125,10 @@ main {
     font-weight: bold;
     color: #555;
 }
+.container-test{
+    flex:1;
 
+}
 .auth-form input[type="text"],
 .auth-form input[type="email"],
 .auth-form input[type="password"] {
@@ -202,9 +206,6 @@ main {
 
 /* Rodapé */
 footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
     width: 100%;
     background-color: #333;
     color: white;

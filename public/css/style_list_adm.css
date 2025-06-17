@@ -2,19 +2,19 @@ body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #FFB347;
-    color: #444444;
+    background-color:#FFB347;
+    color:#444444;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
+
 header {
     background-color:#4DB6AC; /* Verde vibrante */
     color: #fff;
     padding: 20px 0;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    
 }
 .container {
     width:8ZX0; /* Largura do conteúdo principal */
@@ -73,94 +73,115 @@ a {
 }
 /* COMECO DO CODIGO */
 h1 {
-    padding-top: 50px;
-    padding-bottom: 20px;
-    text-align: center;
     margin: 0;
 }
+
 main {
     padding: 20px;
-    max-width: 700px;
-    margin: 0 auto 20px; /* Centraliza horizontalmente e só dá espaço abaixo */
+    max-width: 900px;
+    margin: 20px auto;
     background-color: white;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     border-radius: 8px;
+}
+
+.product-list h2 {
     text-align: center;
-}
-.container-test{
-    flex:1;
-
-}
-
-.admin-dashboard h2 {
-    color:#4DB6AC;
-    margin-bottom: 20px;
-}
-
-.admin-dashboard p {
-    font-size: 1.1em;
-    color: black;
+    color: #4CAF50;
     margin-bottom: 30px;
 }
 
-.dashboard-actions {
+.product-card {
     display: flex;
-    flex-direction: column; /* Botões um abaixo do outro */
-    gap: 20px; /* Espaçamento entre os botões */
-    margin-top: 30px;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    background-color: #fff;
+    transition: transform 0.2s ease-in-out;
 }
 
-.dashboard-btn {
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-card img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-right: 20px;
+    border: 1px solid #eee;
+}
+
+.product-info {
+    flex-grow: 1;
+}
+
+.product-info h3 {
+    margin: 0 0 5px 0;
+    color: #333;
+}
+
+.product-info .description {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.product-info .price {
+    font-weight: bold;
+    color: #e67e22; /* Cor mais vibrante para o preço */
+    margin-bottom: 5px;
+}
+
+.product-info .stock {
+    font-size: 0.85em;
+    color: #555;
+}
+
+.product-actions {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 25px;
-    background-color:#4DB6AC; /* Azul padrão */
+    gap: 10px;
+}
+
+.product-actions button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+.product-actions .edit-btn {
+    background-color:#4DB6AC;
     color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-size: 1.2em;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.dashboard-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+.product-actions .edit-btn:hover {
+    background-color: #2980b9;
 }
 
-.dashboard-btn span {
-    font-size: 0.8em;
-    font-weight: normal;
-    margin-top: 5px;
-    color: rgba(255, 255, 255, 0.8);
+.product-actions .delete-btn {
+    background-color: #e74c3c;
+    color: white;
 }
 
-/* Cores específicas para os botões */
-.dashboard-btn.view-products {
-    background-color:#4DB6AC; /* Verde */
+.product-actions .delete-btn:hover {
+    background-color: #c0392b;
 }
 
-.dashboard-btn.view-products:hover {
-    background-color: #218838;
-}
-
-.dashboard-btn.add-product {
-    background-color:#4DB6AC; /* Azul */
-}
-
-.dashboard-btn.add-product:hover {
-    background-color: #0056b3;
-}
 
 /* Rodapé */
 footer {
     background-color: #333;
-    color: white;
+    color: #fff;
     text-align: center;
-    padding: 20px;
+    padding: 20px 0;
+    margin-top: 30px;
     font-size: 0.9em;
 }
-

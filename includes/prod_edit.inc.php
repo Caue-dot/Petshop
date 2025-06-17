@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
     $img = $_FILES["img"];
     $quantity = ((int)$_POST["quantity"] == 0) ? null : (int)$_POST["quantity"];
-    $tag = $_POST["animal"];
+    $tag = $_POST["tag"];
     $product = $_SESSION["product"];
 
     $product_contr = new ProductContr($product["id"], $name, $description, $price, $img, $quantity,$tag);

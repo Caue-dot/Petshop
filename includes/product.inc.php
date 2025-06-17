@@ -17,11 +17,14 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["id"])) {
     $id = $_GET["id"];
    
     $product_contr = new ProductContr($id);
+
+    
     $product = $product_contr->get_product("../product.php");
-
+    
     $_SESSION["product"] = $product;
-
-    header("Location: ../product.php?id=$id");
+    
+    $added_success = isset($_GET["added_cart"]) ? "&added_cart=success" : "";
+    header("Location: ../product.php?id=$id $added_success");
 }else{
     header("Location: ../index.php");
 }

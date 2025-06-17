@@ -1,3 +1,5 @@
+-- Modelo do banco de dados
+
 create DATABASE petshop;
 
 CREATE TABLE users(

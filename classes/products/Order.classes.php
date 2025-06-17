@@ -135,13 +135,34 @@ class Order extends Dbh{
         $query = 'UPDATE products AS p
                 INNER JOIN orders_products as op ON op.product_id = p.id
                 SET p.quantity = p.quantity - 1
-                WHERE op.order_id = :id;';
+                WHERE op.order_id = :order_id;';
 
         $pdo = parent::connect();
         $stmt = $pdo->prepare($query);
-        $stmt->bindParam(":id", $order_id);
+        $stmt->bindParam(":order_id", $order_id);
+
+        $stmt->execute();
+    }
+
+    protected function delete_order($order_id){
+       $query = 'DELETE FROM orders WHERE order_id = :order_id';
+        $pdo = parent::connect();
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(":order_id", $order_id);
 
         $stmt->execute();
     }
     
+    protected function remove_products_stock_model($order_id){
+        $query = '  UPDATE products  AS p 
+                    INNER JOIN orders_products AS op ON  p.id = op.product_id
+                    SET p.quantity = p.quantity - op.order_quantity
+                    WHERE op.order_id = :order_id;';
+
+
+        $pdo = parent::connect();
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(":order_id", $order_id);
+        $stmt->execute();
+    }
 }

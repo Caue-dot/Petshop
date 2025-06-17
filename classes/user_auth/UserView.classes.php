@@ -52,7 +52,8 @@ class UserView
         if (isset($_SESSION["user_username"])) {
             $username = htmlspecialchars($_SESSION["user_username"]);
             echo '<li><a href="user_page.php"> Bem vindo: '.$username . "</a></li>";
-            
+            echo '<li><a href="cart_list.php">Carrinho</a></li>';
+            echo '<li><a href="orders.php">Pedidos</a></li>';
             if($_SESSION["user_username"] == "admin"){
                 echo ' <li><a href="admin_panel.php">Painel de administrador</a></li>';
             }    

@@ -14,7 +14,6 @@ class MainView{
                         <ul>
                             <li><a href="index.php">Início</a></li>
                             <li><a href="prod_list.php">Produtos</a></li>
-                            <li><a href="informacao.html">Informacao</a></li>
                 ';
                 $login_view->login_info();            
          echo '         </ul>

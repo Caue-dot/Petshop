@@ -4,7 +4,8 @@ body {
     padding: 0;
     background-color:#FFB347;
     color:#444444;
-    position: relative; 
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
 }
 
@@ -71,6 +72,10 @@ main {
     border-bottom: 2px solid #eee;
     padding-bottom: 15px;
     font-size: 1.8em;
+}
+
+.main-content{
+    flex:1;
 }
 
 .product-list {

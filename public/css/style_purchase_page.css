@@ -1,20 +1,20 @@
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
-    padding: 0;
-    background-color: #FFB347;
-    color: #444444;
+    padding: 60;
+    background-color:#FFB347;
+    color:#444444;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
+
 header {
     background-color:#4DB6AC; /* Verde vibrante */
     color: #fff;
     padding: 20px 0;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    
 }
 .container {
     width:8ZX0; /* Largura do conteúdo principal */
@@ -73,94 +73,117 @@ a {
 }
 /* COMECO DO CODIGO */
 h1 {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    color: white;
     text-align: center;
     margin: 0;
 }
+
 main {
-    padding: 20px;
-    max-width: 700px;
-    margin: 0 auto 20px; /* Centraliza horizontalmente e só dá espaço abaixo */
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    border-radius: 8px;
-    text-align: center;
-}
-.container-test{
-    flex:1;
-
-}
-
-.admin-dashboard h2 {
-    color:#4DB6AC;
-    margin-bottom: 20px;
-}
-
-.admin-dashboard p {
-    font-size: 1.1em;
-    color: black;
-    margin-bottom: 30px;
-}
-
-.dashboard-actions {
+    flex-grow: 1;
     display: flex;
-    flex-direction: column; /* Botões um abaixo do outro */
-    gap: 20px; /* Espaçamento entre os botões */
+    justify-content: center;
+    padding: 20px;
+}
+
+.checkout-form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    max-width: 600px; /* Largura máxima para o formulário */
+    width: 100%;
+}
+
+.checkout-form section {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.checkout-form section:last-of-type {
+    border-bottom: none; /* Remove a borda do último section */
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.checkout-form h2 {
+    color:#4DB6AC;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    font-size: 1.5em;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="number"],
+.form-group input[type="password"] {
+    width: calc(100% - 22px); /* Ajusta para padding e borda */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box; /* Garante que padding e border não aumentem o tamanho total */
+}
+
+.form-group small {
+    display: block;
+    color: #888;
+    font-size: 0.8em;
+    margin-top: 5px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px; /* Espaçamento entre os campos de validade e CVV */
+}
+
+.form-row .form-group {
+    flex: 1; /* Faz com que os grupos ocupem o mesmo espaço */
+}
+
+.checkout-actions {
+    text-align: center;
     margin-top: 30px;
 }
 
-.dashboard-btn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 25px;
-    background-color:#4DB6AC; /* Azul padrão */
+.finish-purchase-btn {
+    padding: 15px 30px;
+    background-color:#4DB6AC; /* Azul para o botão de finalizar */
     color: white;
-    text-decoration: none;
-    border-radius: 8px;
+    border: none;
+    border-radius: 5px;
     font-size: 1.2em;
     font-weight: bold;
+    cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.dashboard-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-}
-
-.dashboard-btn span {
-    font-size: 0.8em;
-    font-weight: normal;
-    margin-top: 5px;
-    color: rgba(255, 255, 255, 0.8);
-}
-
-/* Cores específicas para os botões */
-.dashboard-btn.view-products {
-    background-color:#4DB6AC; /* Verde */
-}
-
-.dashboard-btn.view-products:hover {
-    background-color: #218838;
-}
-
-.dashboard-btn.add-product {
-    background-color:#4DB6AC; /* Azul */
-}
-
-.dashboard-btn.add-product:hover {
-    background-color: #0056b3;
+.finish-purchase-btn:hover {
+    background-color: blue;
+    transform: translateY(-2px);
 }
 
 /* Rodapé */
 footer {
     background-color: #333;
-    color: white;
+    color: #fff;
     text-align: center;
-    padding: 20px;
+    padding: 20px 0;
+    margin-top: 30px;
     font-size: 0.9em;
 }
-

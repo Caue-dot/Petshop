@@ -11,19 +11,15 @@ include '../classes/products/OrderContr.classes.php';
 if(isset($_SESSION["user_id"])  ){
 
     $order_contr = new OrderContr($_SESSION["user_id"]);
-
+    $redirect = "../cart_list.php";
 
     
     if(isset($_GET['remove'])){
         $order_contr->remove_product($_GET['remove']);
-        header("location: ../cart_list.php");
+        header("location: $redirect");
         die();
     }
-    if(isset($_GET['buy'])){
-        $order_contr->purchase_order();
-        echo 'comprado com sucesso';
-        die();
-    }
+    
     
     $cart = $order_contr->get_orders("cart");
 
@@ -34,9 +30,9 @@ if(isset($_SESSION["user_id"])  ){
         $order = $cart[0];
         $_SESSION["products_cart"] = $products;
         $_SESSION["order"] = $order;
-        header("location: ../cart_list.php");
+        header("location: $redirect");
     }else{
-        echo 'não tem nada no carrinho';
+        header ("location: $redirect?error=empty_cart");
     }
 
 }else{
