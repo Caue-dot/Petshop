@@ -125,7 +125,7 @@ class ProductContr extends Product
     public function search_product($search, $redirect_error_path)
     {
         if (empty($search)) {
-            header("Location:" . $redirect_error_path . "?error=empty_search");
+            header("Location: ../prod_list.php");
             die();
         }
 

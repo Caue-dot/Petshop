@@ -74,19 +74,12 @@ class ProductView
                         <span class='badge new'></span> 
                     </div>
                     <h3 class='product-name'>$name</h3>
-                    <div class='product-rating'>
-                        <i class='fas fa-star'></i>
-                        <i class='fas fa-star'></i>
-                        <i class='fas fa-star'></i>
-                        <i class='fas fa-star'></i>
-                        <i class='fas fa-star-half-alt'></i>
-                        <span>(120 Avaliações)</span>
-                    </div>
+                
                     <p class='product-price'>
                         <span class='original-price'>R$ $price</span>
                         <br>
                     </p>
-                    <p class='product-installment'>ou 3x de R$ $price_installment sem juros</p>
+                   
                     </a>
                 </div>
             ";

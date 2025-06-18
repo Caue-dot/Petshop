@@ -43,19 +43,19 @@ if (isset($_SESSION["user_id"])) {
                         <div class="form-group">
                             <label for="register-username">Nome de Usuário:</label>
                             <br>
-                            <input type="text" id="register-username" name="username" required>
+                            <input type="text" id="register-username" name="username">
                         </div>
 
                         <div class="form-group">
                             <label for="register-email">Email:</label>
                             <br>
-                            <input type="email" id="register-email" name="email" required>
+                            <input type="email" id="register-email" name="email" >
                         </div>
 
                         <div class="form-group">
                             <label for="register-password">Senha:</label>
                             <br>
-                            <input type="password" id="register-password" name="pwd" required>
+                            <input type="password" id="register-password" name="pwd" >
                         </div>
                         <br>
                         <?php
@@ -75,13 +75,13 @@ if (isset($_SESSION["user_id"])) {
                         <div class="form-group">
                             <label for="login-username">Nome de Usuário:</label>
                             <br>
-                            <input type="text" id="login-username" name="username" required>
+                            <input type="text" id="login-username" name="username" >
                         </div>
 
                         <div class="form-group">
                             <label for="login-password">Senha:</label>
                             <br>
-                            <input type="password" id="login-password" name="pwd" required>
+                            <input type="password" id="login-password" name="pwd">
                         </div>
                         <br>
                         <?php

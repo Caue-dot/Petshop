@@ -42,22 +42,26 @@ if (!isset($_SESSION["products"])  && !isset($_GET["error"])) {
     <?php $main_view->header(); ?>
 
 
-    <form action="includes/prod_list.inc.php" method="GET">
-        <input type="text" name="search" placeholder="Buscar produto">
-        <input type="submit" value="Buscar">
-    </form>
+    <div class="main-div">
+
+        <main class="product-grid-container">
+      
+        <form action="includes/prod_list.inc.php" method="GET">
+            <input type="text" name="search" placeholder="Buscar produto">
+        </form>
+    
+    
+            <section class="product-grid">
+                <?php
+                $view->list_products();
+                $view->check_errors();
+                unset($_SESSION["products"]);
+                ?>
+            </section>
+        </main>
 
 
-    <main class="product-grid-container">
-        <section class="product-grid">
-            <?php
-            $view->list_products();
-            $view->check_errors();
-            unset($_SESSION["products"]);
-            ?>
-        </section>
-    </main>
-
+    </div>    
 
 
   <?php $main_view->footer(); ?>
