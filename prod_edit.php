@@ -46,11 +46,12 @@ if(isset($_GET["id"]) && !isset($_SESSION["product"] )){
     $view->show_product_admin(true);
     $view->edit_inputs();
     ?>
+    
 
 </main>
 
 <?php $main_view->footer(); ?>
-
+<script src="public/js/img_displayer.js"></script> 
 </body>
 
 </html>

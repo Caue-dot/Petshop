@@ -44,12 +44,13 @@ class OrderView
 
                 //Higieniza os inputs, para evitar cross-site-injection
                 $name = htmlspecialchars($product["name"]);
+                $product_id = $product["id"];
                 $price = filter_var($product["price"], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
                 $quantity = filter_var($product["order_quantity"], FILTER_SANITIZE_NUMBER_INT);
                 $total_price = sprintf('%.2f', $price * $quantity);
                 $img = filter_var($product["image"], FILTER_SANITIZE_URL);
                 
-                 echo "<div class='product-list'>
+                 echo " <a href='product.php?id=$product_id'> <div class='product-list'>
                         <div class='product-item'>
                             <img src='$img' alt='$name'>
                             <div class='item-details'>
@@ -58,7 +59,7 @@ class OrderView
                                 <p>Quantidade: $quantity </p>
                             </div>
                         </div>
-                    </div>";
+                    </div> </a>";
             }
         }
     }

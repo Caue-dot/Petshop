@@ -9,13 +9,14 @@ class MainView{
         echo '
             <header class="main-header">
                 <div class="container">
-                    <img src="public/img/logo1.jpg" class="logo"><a href="index.html"></a>
+                   <a href="index.php"> <img src="public/img/logo1.jpg" class="logo"></a>
                     <nav class="main-nav">
                         <ul>
-                            <li><a href="index.php">Início</a></li>
-                            <li><a href="prod_list.php">Produtos</a></li>
+                        <li><a href="index.php">Início</a></li>
+                        <li><a href="prod_list.php">Produtos</a></li>
                 ';
-                $login_view->login_info();            
+                $login_view->login_info(); 
+                           
          echo '         </ul>
                     </nav>
                 </div>

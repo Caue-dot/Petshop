@@ -26,7 +26,7 @@ class Order extends Dbh{
     }
 
     protected function get_orders_model($user_id, $status){
-        $query = "SELECT * FROM orders WHERE user_id = :user_id AND order_status = :order_status;";
+        $query = "SELECT * FROM orders WHERE user_id = :user_id AND order_status = :order_status ORDER BY order_id DESC;";
         $pdo = parent::connect();
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(":user_id", $user_id);

@@ -149,7 +149,7 @@ class OrderContr extends Order
         parent::set_order_status($order_id, "purchased");
         unset($_SESSION["products"]);
         unset($_SESSION["product"]);
-        unset($_SESSION["order"]);
+        unset($_SESSION["orders"]);
     }
 
     protected function delete_order($order_id){

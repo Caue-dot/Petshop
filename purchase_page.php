@@ -11,10 +11,16 @@
     $view = new OrderView();
     if (!isset($_GET["id"]) || !isset($_SESSION["user_id"]) || !isset($_SESSION["order"])) {
 
+        if(isset($_GET["buy"])){
+            header("location: orders.php");  
+            die();
+        }
         if (!isset($_GET["error"])) {
             header("location: index.php");
             die();
         }
+
+ 
     }
     ?>
 

@@ -274,7 +274,9 @@ class ProductView
 
             <div class='form-group'>
                 <label for='product-image'>Arquivo da Imagem:</label>
-                <input type='file' id='product-image' name='productImage' accept='image/*'>
+                <input type='file' id='file' name='productImage' accept='image/*'>
+                <br>
+                <img id='preview' style='width: 400px;'> 
                 <p class='image-note'>Deixe em branco para manter a imagem atual.</p>
             </div>
 

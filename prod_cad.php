@@ -32,46 +32,51 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_username"] != "admin") {
     $main_view->header();
     ?>
     <br>
-    <div class='container'>
-        <h1>Cadastro de Produtos</h1>
-        <form action='includes/prod_cad.inc.php' method='POST' enctype='multipart/form-data'>
-            <div class='form-group'>
-                <label for='productName'>Nome do Produto:</label>
-                <input type='text' id='productName' name='name' required>
-            </div>
-
-            <div class='form-group'>
-                <label for='description'>Descrição:</label>
-                <textarea id='description' name='description' rows='4'></textarea>
-            </div>
-
-            <div class='form-group'>
-                <label for='price'>Preço (R$):</label>
-                <input type='number' id='price' name='price' step='0.01' min='0' required>
-            </div>
-
-            <div class='form-group'>
-                <label for='quantity'>Quantidade:</label>
-                <input type='number' id='quantity' name='quantity' min='0' required>
-            </div>
-
-            <div class='form-group'>
-                <label for='tags'>Tags (separadas por vírgula):</label>
-                <input type='text' id='tags' name='tag' placeholder='Ex: Ração, Gato, Saude'>
-            </div>
-
-            <div class='form-group'>
-                <label for='productImage'>Imagem do Produto:</label>
-                <input type='file' id='productImage' name='img' accept='image/*'>
-            </div>
-
-            <button type='submit'>Cadastrar Produto</button>
-        </form>
-    </div>
+    <main>
+        
+        <div class='container'>
+            <h1>Cadastro de Produtos</h1>
+            <form action='includes/prod_cad.inc.php' method='POST' enctype='multipart/form-data'>
+                <div class='form-group'>
+                    <label for='productName'>Nome do Produto:</label>
+                    <input type='text' id='productName' name='name' required>
+                </div>
+    
+                <div class='form-group'>
+                    <label for='description'>Descrição:</label>
+                    <textarea id='description' name='description' rows='4'></textarea>
+                </div>
+    
+                <div class='form-group'>
+                    <label for='price'>Preço (R$):</label>
+                    <input type='number' id='price' name='price' step='0.01' min='0' required>
+                </div>
+    
+                <div class='form-group'>
+                    <label for='quantity'>Quantidade:</label>
+                    <input type='number' id='quantity' name='quantity' min='0' required>
+                </div>
+    
+                <div class='form-group'>
+                    <label for='tags'>Tags (separadas por vírgula):</label>
+                    <input type='text' id='tags' name='tag' placeholder='Ex: Ração, Gato, Saude'>
+                </div>
+    
+                <div class='form-group'>
+                    <label for='productImage'>Imagem do Produto:</label>
+                    <input type='file' id='file' name='img' accept='image/*'>
+                    <img id='preview' style="width: 400px;"> 
+                </div>
+    
+    
+                <button type='submit'>Cadastrar Produto</button>
+            </form>
+        </div>
+    </main>
     <?php
     $main_view->footer();
     ?>
-
+    <script src="public/js/img_displayer.js"></script>
 </body>
 
 </html>
