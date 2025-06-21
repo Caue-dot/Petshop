@@ -49,12 +49,15 @@ class Config_Session
         session_set_cookie_params([
             'lifetime' => 1800,
             //Domain deverá ser modificado no futuro pelo endereço
-            'domain' => 'localhost',
             'path' => '/',
-            'secure' => true,
-            'httponly' => true
+            'secure' => false,
+            'httponly' => true,
+            'samesite' => 'Lax'
 
         ]);
+        
+
+      
 
         session_start();
 

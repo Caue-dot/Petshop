@@ -51,6 +51,10 @@ class OrderContr extends Order
 
     public function add_product($product,$quantity ,$redirect_error)
     {
+        if(!is_numeric($quantity)){
+            echo "Não tente burlar o html, por favor";
+            die();
+        }
         $order = $this->get_orders("cart");
         $product_quantity = $product["quantity"];
         $product_id = $product["id"];
@@ -106,7 +110,6 @@ class OrderContr extends Order
             die();
 
         }
-
     
         
         $price = $order_product["price"] * $order_product["order_quantity"];
@@ -117,8 +120,6 @@ class OrderContr extends Order
         if($this->get_products($order_id) == false){
             //Sem produtos no carrinho!
             $this->delete_order($order_id);
-            
-
         }
 
 

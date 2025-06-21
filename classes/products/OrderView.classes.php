@@ -98,6 +98,7 @@ class OrderView
         if (isset($_GET['buy'])) {
             echo '<p>Compra realizada com successo</p>';
         }
+        
     }
 
 
@@ -126,7 +127,7 @@ class OrderView
                 if ($quantity < $order_quantity) {
                     echo "<p> O produto $product_name acabou!   <a href=prod_list.php> <button class='continue-shopping-btn'>Continuar Comprando</button> </a>
                 </div>";
-                    die();
+                   return;
                 }
             }
                   
@@ -134,8 +135,12 @@ class OrderView
                     <a href='purchase_page.php?id=$order_id'> <button class='checkout-btn'>Finalizar Compra</button> </a>
                       <a href=prod_list.php> <button class='continue-shopping-btn'>Continuar Comprando</button> </a>
                 </div>";
-                  
-        }
+            
+
+                
+                
+            }
+            
     }
 
 

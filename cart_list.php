@@ -46,6 +46,7 @@ if (!isset($_SESSION["products_cart"]) && !isset($_GET["error"]) || isset($_GET[
                 $view->check_errors();
                 $view->cart_summary();
                 unset($_SESSION["products_cart"]);
+                
 
                 ?>
 
