@@ -6,7 +6,6 @@ body {
     flex-direction: column;
     background-color:#FFB347;
     color:#444444;
-    position: relative; 
     min-height: 100vh;
 }
 .container {
@@ -197,7 +196,7 @@ a {
 }
 
 header {
-    background-color: #5cb85c; /* Um verde mais vibrante */
+    background-color: #4DB6AC; /* Um verde mais vibrante */
     color: white;
     padding: 20px 0;
     text-align: center;
@@ -265,7 +264,7 @@ h1 {
 }
 
 .btn-view-all {
-    background-color: #007bff; /* Azul para o botão */
+    background-color: #4DB6AC; /* Azul para o botão */
     color: white;
     padding: 10px 25px;
     border-radius: 25px;

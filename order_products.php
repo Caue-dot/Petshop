@@ -35,7 +35,7 @@ if(!isset($_SESSION["user_id"]) || !isset($order_user) || $order_user !== $_SESS
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="public/css/style_cart.css">
-    <title>Document</title>
+    <title>Produtos</title>
 </head>
 <body>
     <?php
